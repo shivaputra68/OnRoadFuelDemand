@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnRoadFuelDemand">
         <activity
+            android:name=".activity_splash"
+            android:exported="true" />
+        <activity
             android:name=".BunkMain"
             android:exported="true" />
         <activity
