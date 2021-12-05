@@ -1,22 +1,29 @@
 package com.example.onroadfueldemand;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class MainActivity extends AppCompatActivity{
+
+    //Object Declaration
+    Button user,admin,bunk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button user= findViewById(R.id.user);
-        Button admin = findViewById(R.id.admin),bunk = findViewById(R.id.bunk);
+        //TypeCasting
+        user= findViewById(R.id.user);
+        admin = findViewById(R.id.admin);
+        bunk = findViewById(R.id.bunk);
+
+        //code for users actions
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,6 +32,8 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(i);
             }
         });
+
+        //code for admin actions
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +42,8 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(i);
             }
         });
+
+        //code for bunk actions
         bunk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
