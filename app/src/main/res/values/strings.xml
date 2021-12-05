@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OnRoadFuelDemand</string>
+    <string name="app_name">FUEL DROP</string>
     <string name="title_activity_login_user">LoginActivityUser</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -18,4 +18,8 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <string name="back4app_app_id">peROutvpqDlCgNdgiNetp9Hxbq7I0mrO9opwnyHX</string>
+    <string name="back4app_client_key">Q7UfdIiC2thrVXAIWECSWESksiUCyJ5SKhi0wV0t</string>
 </resources>
