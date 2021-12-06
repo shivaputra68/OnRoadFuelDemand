@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/register_background"
     tools:context=".userregister">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -19,12 +20,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your name" />
+            android:hint="Enter your name"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -39,12 +44,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
-        app:layout_constraintVertical_bias="0.060000002">
+        app:layout_constraintVertical_bias="0.060000002"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your phone" />
+            android:hint="Enter your phone"
+            android:background="@android:color/transparent"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,12 +68,15 @@
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            android:id="@+id/address"
             android:layout_height="wrap_content"
-            android:hint="Enter your phone number" />
+            android:hint="Enter your Address "
+            android:background="@android:color/transparent"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -81,12 +92,15 @@
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your address" />
+            android:hint="Enter your Email"
+            android:background="@android:color/transparent"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -159,4 +173,4 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox"
         app:layout_constraintVertical_bias="0.24000001" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

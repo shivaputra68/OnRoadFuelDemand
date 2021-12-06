@@ -28,4 +28,15 @@
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
     <string name="back4app_app_id">peROutvpqDlCgNdgiNetp9Hxbq7I0mrO9opwnyHX</string>
     <string name="back4app_client_key">Q7UfdIiC2thrVXAIWECSWESksiUCyJ5SKhi0wV0t</string>
+
+    <!-- User registration details values -->
+    <string name="label">REGISTRATION</string>
+    <string name="name" >Enter Name</string>
+    <string name="address">Enter Address</string>
+    <string name="phone">Enter Contact Number</string>
+    <string name="email">Enter Email</string>
+    <string name="cpassword">Confirm Password</string>
+    <string name="location">Select bunk location</string>
+    <string name="checkbox"> agree to terms and condtions</string>
+
 </resources>
