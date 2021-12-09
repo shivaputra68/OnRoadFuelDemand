@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OnRoadFuelDemand</string>
+    <string name="appname">OnRoadFue</string>
     <array name="types">
         <item>SELECT</item>
         <item>USER</item>

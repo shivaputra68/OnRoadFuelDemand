@@ -26,9 +26,6 @@
             android:name=".login_user"
             android:exported="true" />
         <activity
-            android:name=".userregister"
-            android:exported="true" />
-        <activity
             android:name=".activity_splash"
             android:exported="true">
             <intent-filter>
