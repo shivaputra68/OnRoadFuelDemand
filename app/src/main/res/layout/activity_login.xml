@@ -5,7 +5,7 @@
     android:id="@+id/loginActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_user"
+    tools:context=".Login"
     android:padding="30dp"
     android:orientation="vertical"
     android:background="@drawable/login">
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:hint="@string/password"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:minHeight="48dp" />
 
     <TextView
@@ -63,11 +63,11 @@
         android:id="@+id/option"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="@string/or"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="230dp"
-        android:textSize="18sp"
-        android:textColor="#5283C0"/>
+        android:layout_marginTop="10dp"
+        android:text="@string/or"
+        android:textColor="#5283C0"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btn_signup"

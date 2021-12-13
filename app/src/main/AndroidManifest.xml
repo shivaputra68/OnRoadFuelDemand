@@ -14,7 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnRoadFuelDemand">
         <activity
-            android:name=".user_register"
+            android:name=".AdminMain"
+            android:exported="true" />
+        <activity
+            android:name=".UserMain"
+            android:exported="true" />
+        <activity
+            android:name=".Register"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -23,7 +29,7 @@
             android:name=".BunkMain"
             android:exported="true" />
         <activity
-            android:name=".login_user"
+            android:name=".Login"
             android:exported="true" />
         <activity
             android:name=".activity_splash"
