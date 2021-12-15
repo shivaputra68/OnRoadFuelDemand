@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FUEL dROP</string>
+    <string name="app_name">FUEL DROP</string>
     <string name="title_activity_login_user">LoginActivityUser</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
