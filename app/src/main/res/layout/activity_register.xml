@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register"
-    android:background="@drawable/register_background"
     android:id="@+id/reg_page"
     tools:ignore="InvalidId">
         
@@ -22,7 +20,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/white"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -45,7 +43,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:textColorHint="@android:color/white" >
+                android:textColorHint="@android:color/holo_purple" >
 
                 <EditText
                     android:id="@+id/reg_name"
@@ -54,9 +52,9 @@
                     android:background="@drawable/edittext_design"
                     android:hint="@string/name"
                     android:inputType="textPersonName"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
-                    android:importantForAutofill="no"></EditText>
+                    android:importantForAutofill="no" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +64,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/white">
+                android:textColorHint="@android:color/holo_purple">
 
                 <EditText
                     android:id="@+id/reg_address"
@@ -75,7 +73,7 @@
                     android:background="@drawable/edittext_design"
                     android:hint="@string/address"
                     android:inputType="textLongMessage"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,7 +84,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/white">
+                android:textColorHint="@android:color/holo_purple">
 
                 <EditText
                     android:id="@+id/reg_email"
@@ -95,7 +93,7 @@
                     android:background="@drawable/edittext_design"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -106,7 +104,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/white">
+                android:textColorHint="@android:color/holo_purple">
 
                 <EditText
                     android:id="@+id/reg_contact"
@@ -115,7 +113,7 @@
                     android:background="@drawable/edittext_design"
                     android:hint="@string/phone"
                     android:inputType="number"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -126,7 +124,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:textColorHint="@android:color/white">
+                android:textColorHint="@android:color/holo_purple">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,7 +133,7 @@
                 android:background="@drawable/edittext_design"
                 android:importantForAutofill="no"
                 android:inputType="textShortMessage"
-                android:textColor="@color/white"
+                android:textColor="@android:color/holo_purple"
                 />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,7 +143,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/white">
+                android:textColorHint="@android:color/holo_purple">
 
                 <EditText
                     android:id="@+id/reg_username"
@@ -154,7 +152,7 @@
                     android:background="@drawable/edittext_design"
                     android:hint="@string/username"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -165,7 +163,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/white">
+                android:textColorHint="@android:color/holo_purple">
 
                 <EditText
                     android:id="@+id/reg_password"
@@ -174,7 +172,7 @@
                     android:background="@drawable/edittext_design"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -185,7 +183,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/white">
+                android:textColorHint="@android:color/holo_purple">
 
                 <EditText
                     android:id="@+id/reg_conf_password"
@@ -194,7 +192,7 @@
                     android:background="@drawable/edittext_design"
                     android:hint="@string/cpassword"
                     android:inputType="textPassword"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -210,7 +208,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:text="@string/checkbox"
-                android:textColor="@color/white"
+                android:textColor="@android:color/black"
                 tools:ignore="TextContrastCheck" />
 
             <Button
@@ -225,11 +223,7 @@
                 android:text="@string/signup"
                 android:textColor="#D1C4E9"
                 tools:ignore="TextContrastCheck"
-                android:clickable="true"/>
+                android:clickable="true" />
 
         </LinearLayout>
-
-
-
-
 </ScrollView>
