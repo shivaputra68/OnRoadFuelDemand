@@ -31,7 +31,7 @@
 
     <!-- User registration details values -->
     <string name="label">REGISTRATION</string>
-    <string name="name" >Enter Name</string>
+    <string name="name">Enter Name</string>
     <string name="address">Enter Address</string>
     <string name="phone">Enter Contact Number</string>
     <string name="email">Enter Email</string>

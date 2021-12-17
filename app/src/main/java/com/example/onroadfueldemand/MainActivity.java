@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity{
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,login_user.class);
+                Intent i = new Intent(MainActivity.this, Login.class);
                 i.putExtra("key", "user");
                 startActivity(i);
             }
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity{
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(MainActivity.this,login_user.class);
+                Intent i =new Intent(MainActivity.this, Login.class);
                 i.putExtra("key", "admin");
                 startActivity(i);
             }
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                Intent i =new Intent(MainActivity.this,login_user.class);
+                Intent i =new Intent(MainActivity.this, Login.class);
                 i.putExtra("key", "bunk");
                 startActivity(i);
 

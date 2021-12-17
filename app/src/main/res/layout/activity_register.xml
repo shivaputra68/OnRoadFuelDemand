@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user_register"
+    tools:context=".Register"
     android:background="@drawable/register_background"
     android:id="@+id/reg_page"
     tools:ignore="InvalidId">
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_design"
                     android:hint="@string/password"
-                    android:inputType="numberPassword"
+                    android:inputType="textPassword"
                     android:textColor="@color/white"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
@@ -193,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_design"
                     android:hint="@string/cpassword"
-                    android:inputType="numberPassword"
+                    android:inputType="textPassword"
                     android:textColor="@color/white"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
@@ -224,7 +224,8 @@
                 android:background="@drawable/login_button_design"
                 android:text="@string/signup"
                 android:textColor="#D1C4E9"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck"
+                android:clickable="true"/>
 
         </LinearLayout>
 
