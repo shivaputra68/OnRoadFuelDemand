@@ -145,6 +145,15 @@ public class Login extends AppCompatActivity {
                 break;
         }
     }
+
+    @Override
+    protected  void onResume() {
+
+        super.onResume();
+
+        Intent i = getIntent();
+        heading.setText(i.getStringExtra("usertype"));
+    }
     public boolean Login_method(String key,String username,String password){
             return true;
     }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +18,7 @@ public class Register extends AppCompatActivity {
     EditText map_reg,contact,email,username,password,conf_password;
     Button signup;
     LinearLayout layout;
-    String latlong;
+    String lat_long;
 
 
     @Override
@@ -47,19 +48,15 @@ public class Register extends AppCompatActivity {
             //registration.registerUser(username.getText().toString(),password.getText().toString(),email.getText().toString());
            // Intent intent= new Intent(Register.this,Login.class);
 
-        }
-        else
-        {
+        }else if(usertype.equals("bunk")){
+
             signup.setText("Continue");
             Registration registration=new Registration();
+
             //registration.registerUser(username.getText().toString(),password.getText().toString(),email.getText().toString());
             //Intent intent = new Intent(Register.this,Register_map.class);
 
-
-
-
         }
-
 
         map_reg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +71,10 @@ public class Register extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Register.this, Login.class);
+                intent.putExtra("usertype",usertype);
+                startActivity(intent);
             }
         });
 
