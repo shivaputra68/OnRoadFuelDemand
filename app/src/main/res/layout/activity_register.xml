@@ -16,15 +16,36 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/label"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:text="@string/label"
                 android:textAlignment="center"
-                android:gravity="center_horizontal"/>
+                android:textColor="#A1887F"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textColorHint="@android:color/holo_purple" >
+
+                <EditText
+                    android:id="@+id/reg_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edittext_design"
+                    android:hint="@string/name"
+                    android:inputType="textPersonName"
+                    android:textColor="@android:color/holo_purple"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:importantForAutofill="no" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -35,9 +56,29 @@
                 android:textColorHint="@android:color/holo_purple">
 
                 <EditText
+                    android:id="@+id/reg_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edittext_design"
+                    android:hint="@string/address"
+                    android:inputType="textLongMessage"
+                    android:textColor="@android:color/holo_purple"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:importantForAutofill="no" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:textColorHint="@android:color/holo_purple">
+
+                <EditText
                     android:id="@+id/reg_email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@drawable/edittext_design"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
@@ -57,13 +98,33 @@
                 <EditText
                     android:id="@+id/reg_contact"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@drawable/edittext_design"
                     android:hint="@string/phone"
                     android:inputType="number"
                     android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:textColorHint="@android:color/holo_purple">
+
+                <EditText
+                    android:id="@+id/reg_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edittext_design"
+                    android:hint="@string/location"
+                    android:importantForAutofill="no"
+                    android:inputType="textShortMessage"
+                    android:textColor="@android:color/holo_purple"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -77,7 +138,7 @@
                 <EditText
                     android:id="@+id/reg_username"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@drawable/edittext_design"
                     android:hint="@string/username"
                     android:inputType="textEmailAddress"
@@ -97,7 +158,7 @@
                 <EditText
                     android:id="@+id/reg_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@drawable/edittext_design"
                     android:hint="@string/password"
                     android:inputType="textPassword"
@@ -117,29 +178,10 @@
                 <EditText
                     android:id="@+id/reg_conf_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@drawable/edittext_design"
                     android:hint="@string/cpassword"
                     android:inputType="textPassword"
-                    android:textColor="@android:color/holo_purple"
-                    tools:ignore="SpeakableTextPresentCheck"
-                    android:importantForAutofill="no" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/holo_purple">
-
-                <EditText
-                    android:id="@+id/reg_map"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_design"
-                    android:hint="Get your location"
-                    android:inputType="text"
                     android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
@@ -155,6 +197,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
+                android:minHeight="48dp"
                 android:text="@string/checkbox"
                 android:textColor="@android:color/black"
                 tools:ignore="TextContrastCheck" />
@@ -162,7 +205,7 @@
             <Button
                 android:id="@+id/reg_signup"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:layout_marginStart="100dp"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="15dp"
@@ -171,8 +214,8 @@
                 android:text="@string/signup"
                 android:textColor="#D1C4E9"
                 tools:ignore="TextContrastCheck"
-                android:clickable="true" />
-
+                android:clickable="true"
+                android:focusable="true" />
 
         </LinearLayout>
 </ScrollView>

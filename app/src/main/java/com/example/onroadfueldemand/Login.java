@@ -88,7 +88,7 @@ public class Login extends AppCompatActivity {
                         ParseUser.logInInBackground(name, pass,(user,e)->{
                             if(user!=null)
                             {
-                                Toast.makeText(getApplicationContext(), "login sucessful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Login.this, UserMain.class);
                                 startActivity(i);
                             }
@@ -111,6 +111,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(Login.this, Register.class);
+                        intent.putExtra("usertype",key);
                         startActivity(intent);
                     }
                 });

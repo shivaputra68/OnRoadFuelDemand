@@ -6,13 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.Toast;
-import operations.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.parse.ParseUser;
+import operations.Registration;
 
 public class Register extends AppCompatActivity {
 
@@ -39,24 +36,24 @@ public class Register extends AppCompatActivity {
         conf_password = findViewById(R.id.reg_conf_password);
         //location = findViewById(R.id.reg_location);
         signup = findViewById(R.id.reg_signup);
-        map_reg=findViewById(R.id.reg_map);
+        map_reg=findViewById(R.id.reg_location);
         Intent in=getIntent();
         String usertype=in.getStringExtra("usertype");
-        if(usertype=="user")
+        if(usertype.equals("user"))
         {
             Registration registration=new Registration();
             signup.setText("Signup");
 
-            registration.registerUser(username.getText().toString(),password.getText().toString(),email.getText().toString());
-            Intent intent= new Intent(Register.this,Login.class);
+            //registration.registerUser(username.getText().toString(),password.getText().toString(),email.getText().toString());
+           // Intent intent= new Intent(Register.this,Login.class);
 
         }
         else
         {
             signup.setText("Continue");
             Registration registration=new Registration();
-            registration.registerUser(username.getText().toString(),password.getText().toString(),email.getText().toString());
-            Intent intent = new Intent(Register.this,Register_map.class);
+            //registration.registerUser(username.getText().toString(),password.getText().toString(),email.getText().toString());
+            //Intent intent = new Intent(Register.this,Register_map.class);
 
 
 
