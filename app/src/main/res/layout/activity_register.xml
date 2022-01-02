@@ -26,58 +26,6 @@
                 android:textAlignment="center"
                 android:gravity="center_horizontal"/>
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:id="@+id/reg_spinner"
-                android:entries="@array/types"
-                android:background="@drawable/edittext_design"
-                />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:textColorHint="@android:color/holo_purple" >
-
-                <EditText
-                    android:id="@+id/reg_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_design"
-                    android:hint="@string/name"
-                    android:inputType="textPersonName"
-                    android:textColor="@android:color/holo_purple"
-                    tools:ignore="SpeakableTextPresentCheck"
-                    android:importantForAutofill="no" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/holo_purple">
-
-                <EditText
-                    android:id="@+id/reg_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_design"
-                    android:hint="@string/address"
-                    android:inputType="textLongMessage"
-                    android:textColor="@android:color/holo_purple"
-                    tools:ignore="SpeakableTextPresentCheck"
-                    android:importantForAutofill="no" />
-            </com.google.android.material.textfield.TextInputLayout>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -116,25 +64,6 @@
                     android:textColor="@android:color/holo_purple"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:textColorHint="@android:color/holo_purple">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/reg_location"
-                android:hint="@string/location"
-                android:background="@drawable/edittext_design"
-                android:importantForAutofill="no"
-                android:inputType="textShortMessage"
-                android:textColor="@android:color/holo_purple"
-                />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -196,6 +125,25 @@
                     tools:ignore="SpeakableTextPresentCheck"
                     android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:textColorHint="@android:color/holo_purple">
+
+                <EditText
+                    android:id="@+id/reg_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_design"
+                    android:hint="Get your location"
+                    android:inputType="text"
+                    android:textColor="@android:color/holo_purple"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:importantForAutofill="no" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <CheckBox
@@ -224,6 +172,7 @@
                 android:textColor="#D1C4E9"
                 tools:ignore="TextContrastCheck"
                 android:clickable="true" />
+
 
         </LinearLayout>
 </ScrollView>

@@ -1,4 +1,4 @@
-package com.example.onroadfueldemand;
+package operations;
 
 public class Customer {
     private String Name,Address,Email,Contact;

@@ -1,5 +1,5 @@
 <resources>
-   <string name="app_name">FUEL DROP</string>
+    <string name="app_name">FUEL DROP</string>
     <string name="title_activity_login_user">LoginActivityUser</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -38,5 +38,6 @@
     <string name="cpassword">Confirm Password</string>
     <string name="location">Select bunk location</string>
     <string name="checkbox"> agree to terms and condtions</string>
+    <string name="title_activity_register_map">Register_map</string>
 
 </resources>
