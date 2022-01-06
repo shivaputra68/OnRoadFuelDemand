@@ -1,5 +1,6 @@
 package com.example.onroadfueldemand;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,19 +28,21 @@ public class Login extends AppCompatActivity {
 
         //TypeCasting
         signup= findViewById(R.id.btn_signup);
-        layout = findViewById(R.id.loginActivity);
         login= findViewById(R.id.btn_login);
+        layout = findViewById(R.id.loginActivity);
         heading=findViewById(R.id.heading);
         option = findViewById(R.id.option);
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
 
-        //Actions tro be carried out
+
+        //Actions to be carried out
         //defining intent to receive the values
         Intent intent = getIntent();
         String key=intent.getStringExtra("key");
 
         switch(key){
+            //ADMIN related code
             case "admin":
                 heading.setText("ADMIN LOGIN");
                 layout.removeView(signup);
@@ -49,67 +52,26 @@ public class Login extends AppCompatActivity {
                     public void onClick(View v) {
                         String name = username.getText().toString();
                         String pass = password.getText().toString();
-                        ParseUser.logInInBackground(name, pass,(user,e)->{
-                           if(user!=null)
-                           {
-                               if(name.contains("nirmal@admin")|| name.contains("shivaputra@admin"))
-                               {
-                                   Intent i= new Intent(Login.this,AdminMain.class);
-                                   startActivity(i);
-                               }
-                               else
-                               {
-                                   Toast.makeText(Login.this, "Invalid AdminName and Password", Toast.LENGTH_SHORT).show();
-                               }
-                           }
-                           else {
-                               Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                           }
-
-                        });
-                        //boolean result = Login_method(key,name,pass);
-//                        if(result){
-//                            Intent i = new Intent(getApplicationContext(),ls.class);
-//                            startActivity(i);
-//                            Toast.makeText(getApplicationContext(), "Login Successfully!", Toast.LENGTH_LONG).show();
-//                        }else{
-//                            Toast.makeText(getApplicationContext(), "Invalid username/password", Toast.LENGTH_LONG).show();
-//                        }
+                        login(name,pass);
                     }
                 });
                 break;
             case "user":
+                //USER related code
                 heading.setText("USER LOGIN");
                 login.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String name = username.getText().toString();
                         String pass = password.getText().toString();
-                        ParseUser.logInInBackground(name, pass,(user,e)->{
-                            if(user!=null)
-                            {
-                                Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(Login.this, UserMain.class);
-                                startActivity(i);
-                            }
-                            else
-                            {
-                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-//                        boolean result = Login_method(key,name,pass);
-//                        if(result){
-//                            Toast.makeText(getApplicationContext(), "Login Successfully", Toast.LENGTH_LONG).show();
-//                        }else{
-//                            Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
-//                        }
+                        login(name,pass);
                     }
                 });
 
                 signup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Intent intent = new Intent(Login.this, Register.class);
                         intent.putExtra("usertype",key);
                         startActivity(intent);
@@ -123,15 +85,9 @@ public class Login extends AppCompatActivity {
                     public void onClick(View v) {
                         String name = username.getText().toString();
                         String pass = password.getText().toString();
-//                        boolean result = Login_method(key,name,pass);
-//                        if(result){
-//                            Toast.makeText(getApplicationContext(), "Login Successfully", Toast.LENGTH_LONG).show();
-//                        }else{
-//                            Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
-//                        }
+                        login(name,pass);
                     }
                 });
-
                 signup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -146,15 +102,29 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    //On resume code
     @Override
     protected  void onResume() {
-
         super.onResume();
 
         Intent i = getIntent();
         heading.setText(i.getStringExtra("usertype"));
     }
-    public boolean Login_method(String key,String username,String password){
-            return true;
+
+    public void login(String username, String password){
+        ProgressDialog progress  = new ProgressDialog(this);
+        progress.show();
+        progress.setMessage("Please wait....");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        ParseUser.logInInBackground(username, password, (parseUser, e) -> {
+            progress.dismiss();
+            if (parseUser != null) {
+                //showAlert("Successful Login", "Welcome back " + username + " !");
+                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+            } else {
+                ParseUser.logOut();
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

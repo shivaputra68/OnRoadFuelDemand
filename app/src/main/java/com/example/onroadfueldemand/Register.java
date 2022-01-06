@@ -2,20 +2,21 @@ package com.example.onroadfueldemand;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
-import operations.Registration;
-
-public class Register extends AppCompatActivity {
+public class Register<protecetd> extends AppCompatActivity {
 
     //objects declaration
-    EditText map_reg,contact,email,username,password,conf_password;
+    EditText map_reg,contact,email,username,password,conf_password,name,address;
     Button signup;
     LinearLayout layout;
     String lat_long;
@@ -26,58 +27,72 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //Typecasting
-        layout = findViewById(R.id.reg_page_layout);
-        //name = findViewById(R.id.reg_name);
-        //address = findViewById(R.id.reg_address);
+        //Intent from Login page
+        Intent intent = getIntent();
+        String usertype = intent.getStringExtra("usertype");
+
+        //Object TypeCasting
+        name = findViewById(R.id.reg_name);
+        address = findViewById(R.id.reg_address);
         contact = findViewById(R.id.reg_contact);
         email = findViewById(R.id.reg_email);
+        map_reg = findViewById(R.id.reg_location);
         username = findViewById(R.id.reg_username);
         password = findViewById(R.id.reg_password);
         conf_password = findViewById(R.id.reg_conf_password);
-        //location = findViewById(R.id.reg_location);
         signup = findViewById(R.id.reg_signup);
-        map_reg=findViewById(R.id.reg_location);
-        Intent in=getIntent();
-        String usertype=in.getStringExtra("usertype");
-        if(usertype.equals("user"))
-        {
-            Registration registration=new Registration();
-            signup.setText("Signup");
+        layout = findViewById(R.id.reg_page_layout);
 
-            //registration.registerUser(username.getText().toString(),password.getText().toString(),email.getText().toString());
-           // Intent intent= new Intent(Register.this,Login.class);
-
-        }else if(usertype.equals("bunk")){
-
-            signup.setText("Continue");
-            Registration registration=new Registration();
-
-            //registration.registerUser(username.getText().toString(),password.getText().toString(),email.getText().toString());
-            //Intent intent = new Intent(Register.this,Register_map.class);
-
+        //Action code
+        switch(usertype){
+            case "user":
+                signup.setText("Sign up");
+                signup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Register(name.getText().toString(), address.getText().toString(), contact.getText().toString()
+                                , email.getText().toString(), username.getText().toString(), password.getText().toString());
+                    }
+                });
+                break;
+            case "admin":
+                signup.setText("Continue");
+                signup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Register(name.getText().toString(),address.getText().toString(),contact.getText().toString(),email.getText().toString()
+                        ,username.getText().toString(),password.getText().toString());
+                    }
+                });
+                break;
+            default:
+                break;
         }
+    }
 
-        map_reg.setOnClickListener(new View.OnClickListener() {
+    public void Register(String name,String address,String contact,String email,String username,String password ){
+        //Back4App Parser
+        Handler handler = new Handler();
+        String result;
+        ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.put("name",name);
+        user.put("contact",contact);
+        user.put("address",address);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.signUpInBackground(new SignUpCallback() {
             @Override
-            public void onClick(View v) {
-                Intent i= new Intent(Register.this,Register_map.class);
-                startActivity(i);
-
-
+            public void done(ParseException e) {
+                if (e == null) {
+                    Toast.makeText(getApplicationContext(), "Successful Sign Up!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),Register_map.class);
+                    startActivity(intent);
+                } else {
+                    ParseUser.logOut();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Register.this, Login.class);
-                intent.putExtra("usertype",usertype);
-                startActivity(intent);
-            }
-        });
-
-
     }
 }

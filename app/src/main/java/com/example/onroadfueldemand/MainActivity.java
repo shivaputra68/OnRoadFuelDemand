@@ -51,9 +51,7 @@ public class MainActivity extends AppCompatActivity{
                 Intent i =new Intent(MainActivity.this, Login.class);
                 i.putExtra("key", "bunk");
                 startActivity(i);
-
             }
         });
-
     }
 }

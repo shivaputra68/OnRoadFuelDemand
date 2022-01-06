@@ -17,8 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="35sp"
-        android:text="" />
+        android:textSize="35sp" />
 
     <EditText
         android:id="@+id/username"
