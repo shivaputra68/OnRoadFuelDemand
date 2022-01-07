@@ -1,5 +1,6 @@
 package com.example.onroadfueldemand;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class Login extends AppCompatActivity {
     LinearLayout layout;
     TextView heading,option;
     EditText username,password;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,22 @@ public class Login extends AppCompatActivity {
                     public void onClick(View v) {
                         String name = username.getText().toString();
                         String pass = password.getText().toString();
-                        login(name,pass);
+                        ProgressDialog progress  = new ProgressDialog(Login.this);
+                        progress.show();
+                        progress.setMessage("Please wait....");
+                        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
+                            progress.dismiss();
+                            if (parseUser != null) {
+                                //showAlert("Successful Login", "Welcome back " + username + " !");
+                                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Login.this, AdminMain.class);
+                                startActivity(intent);
+                            } else {
+                                ParseUser.logOut();
+                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
                 break;
@@ -87,7 +104,20 @@ public class Login extends AppCompatActivity {
                     public void onClick(View v) {
                         String name = username.getText().toString();
                         String pass = password.getText().toString();
-                        login(name,pass);
+                        ProgressDialog progress  = new ProgressDialog(Login.this);
+                        progress.show();
+                        progress.setMessage("Please wait....");
+                        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
+                            progress.dismiss();
+                            if (parseUser != null) {
+                                //showAlert("Successful Login", "Welcome back " + username + " !");
+                                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                            } else {
+                                ParseUser.logOut();
+                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
                 signup.setOnClickListener(new View.OnClickListener() {
@@ -106,10 +136,10 @@ public class Login extends AppCompatActivity {
 
     //On resume code
     @Override
-    protected  void onResume() {
-        super.onResume();
-
+    protected  void onRestart() {
+        super.onRestart();
         Intent i = getIntent();
+
         heading.setText(i.getStringExtra("usertype"));
     }
 
