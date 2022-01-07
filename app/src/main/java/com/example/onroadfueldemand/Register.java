@@ -36,7 +36,7 @@ public class Register<protecetd> extends AppCompatActivity {
         address = findViewById(R.id.reg_address);
         contact = findViewById(R.id.reg_contact);
         email = findViewById(R.id.reg_email);
-        map_reg = findViewById(R.id.reg_location);
+        //map_reg = findViewById(R.id.reg_location);
         username = findViewById(R.id.reg_username);
         password = findViewById(R.id.reg_password);
         conf_password = findViewById(R.id.reg_conf_password);
@@ -55,11 +55,23 @@ public class Register<protecetd> extends AppCompatActivity {
                     }
                 });
                 break;
-            case "admin":
+            case "bunk":
                 signup.setText("Continue");
                 signup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Intent intent1=new Intent(getApplicationContext(),Register_map.class);
+                        String address1=address.getText().toString(),name1=name.getText().toString(),contact1=contact.getText().toString(),email1=email.getText().toString(),username1=username.getText().toString(),
+                        password1=password.getText().toString();
+
+                        intent1.putExtra("name",name1);
+                        intent1.putExtra("address",address1);
+                        intent1.putExtra("contact",contact1);
+                        intent1.putExtra("email", email1);
+                        intent1.putExtra("username", username1);
+                        intent1.putExtra("password", password1);
+                        startActivity(intent1);
+
                         Register(name.getText().toString(),address.getText().toString(),contact.getText().toString(),email.getText().toString()
                         ,username.getText().toString(),password.getText().toString());
                     }
@@ -72,8 +84,6 @@ public class Register<protecetd> extends AppCompatActivity {
 
     public void Register(String name,String address,String contact,String email,String username,String password ){
         //Back4App Parser
-        Handler handler = new Handler();
-        String result;
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.put("name",name);

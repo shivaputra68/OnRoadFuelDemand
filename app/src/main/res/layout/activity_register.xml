@@ -111,26 +111,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:textColorHint="@android:color/holo_purple">
-
-                <EditText
-                    android:id="@+id/reg_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/edittext_design"
-                    android:hint="@string/location"
-                    android:importantForAutofill="no"
-                    android:inputType="textShortMessage"
-                    android:textColor="@android:color/holo_purple"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/user1"

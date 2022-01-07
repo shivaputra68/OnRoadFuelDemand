@@ -65,6 +65,8 @@ public class Login extends AppCompatActivity {
                         String name = username.getText().toString();
                         String pass = password.getText().toString();
                         login(name,pass);
+
+
                     }
                 });
 

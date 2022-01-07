@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,6 +20,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.onroadfueldemand.databinding.ActivityRegisterMapBinding;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class Register_map extends FragmentActivity implements OnMapReadyCallback {
 
@@ -49,7 +53,20 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
 
 
         //intent from map to register page
+        Intent intent = getIntent();
+        String name=intent.getStringExtra("name");
+        String address=intent.getStringExtra("address");
+        String contact= intent.getStringExtra("contact");
+        String email=intent.getStringExtra("username");
+        String username=intent.getStringExtra("username");
+        String password=intent.getStringExtra("password");
+       btn_map_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Register(name, address, contact, email, username, password, cordinates);
 
+            }
+        });
 
     }
 
@@ -85,5 +102,32 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
 
 
 
+    }
+    public void Register(String name,String address,String contact,String email,String username,String password,String location ){
+        //Back4App Parser
+        ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.put("name",name);
+        user.put("contact",contact);
+        user.put("address",address);
+        user.put("location", location);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    Toast.makeText(getApplicationContext(), "Successful Sign Up!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),Login.class);
+                    startActivity(intent);
+                } else {
+                    ParseUser.logOut();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),Login.class);
+                    startActivity(intent);
+
+                }
+            }
+        });
     }
 }
