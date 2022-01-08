@@ -2,22 +2,21 @@ package com.example.onroadfueldemand;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-public class Register extends AppCompatActivity {
+public class Register<protecetd> extends AppCompatActivity {
 
     //objects declaration
-    EditText map_reg,contact,email,username,password,conf_password,name,address;
+    EditText contact,email,username,password,conf_password,name,address;
     Button signup;
     LinearLayout layout;
     String lat_long;
@@ -37,7 +36,6 @@ public class Register extends AppCompatActivity {
         address = findViewById(R.id.reg_address);
         contact = findViewById(R.id.reg_contact);
         email = findViewById(R.id.reg_email);
-        //map_reg = findViewById(R.id.reg_location);
         username = findViewById(R.id.reg_username);
         password = findViewById(R.id.reg_password);
         conf_password = findViewById(R.id.reg_conf_password);
@@ -61,21 +59,19 @@ public class Register extends AppCompatActivity {
                 signup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent1=new Intent(Register.this,Register_map.class);
-                        //String address1=address.getText().toString(),name1=name.getText().toString(),contact1=contact.getText().toString(),email1=email.getText().toString(),username1=username.getText().toString(),
-                        //password1=password.getText().toString();
+                        Intent intent1=new Intent(getApplicationContext(),Register_map.class);
+                        String address1=address.getText().toString(),name1=name.getText().toString(),contact1=contact.getText().toString(),email1=email.getText().toString(),username1=username.getText().toString(),
+                                password1=password.getText().toString();
 
-                        System.out.println("************"+name.getText().toString()+"*************");
-                        intent1.putExtra("name",name.getText().toString());
-                        intent1.putExtra("address",address.getText().toString());
-                        intent1.putExtra("contact",contact.getText().toString());
-                        intent1.putExtra("email", email.getText().toString());
-                        intent1.putExtra("username", username.getText().toString());
-                        intent1.putExtra("password", password.getText().toString());
+                        intent1.putExtra("name",name1);
+                        intent1.putExtra("address",address1);
+                        intent1.putExtra("contact",contact1);
+                        intent1.putExtra("email", email1);
+                        intent1.putExtra("username", username1);
+                        intent1.putExtra("password", password1);
                         startActivity(intent1);
 
-                        /*Register(name.getText().toString(),address.getText().toString(),contact.getText().toString(),email.getText().toString()
-                        ,username.getText().toString(),password.getText().toString());*/
+
                     }
                 });
                 break;

@@ -1,24 +1,25 @@
 package com.example.onroadfueldemand;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.onroadfueldemand.databinding.ActivityRegisterMapBinding;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.onroadfueldemand.databinding.ActivityRegisterMapBinding;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -34,8 +35,9 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         btn_map_confirm=findViewById(R.id.btn_map_confirm);
+
+
         if(ContextCompat.checkSelfPermission(Register_map.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(Register_map.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 100);
@@ -48,6 +50,23 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+        //intent from map to register page
+        Intent intent = getIntent();
+        String name=intent.getStringExtra("name");
+        String address=intent.getStringExtra("address");
+        String contact= intent.getStringExtra("contact");
+        String email=intent.getStringExtra("username");
+        String username=intent.getStringExtra("username");
+        String password=intent.getStringExtra("password");
+       btn_map_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Register(name, address, contact, email, username, password, cordinates);
+
+            }
+        });
 
     }
 
@@ -76,24 +95,13 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
 
                 mMap.addMarker(new MarkerOptions().position(latLng).draggable(true));
                 cordinates=latLng.toString();
-
-                //intent from map to register page
-                Intent intent = getIntent();
-                String name=intent.getStringExtra("name");
-                String address=intent.getStringExtra("address");
-                String contact= intent.getStringExtra("contact");
-                String email=intent.getStringExtra("email");
-                String username=intent.getStringExtra("username");
-                String password=intent.getStringExtra("password");
-                btn_map_confirm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Register(name, address, contact, email, username, password, cordinates);
-
-                    }
-                });
             }
         });
+
+
+
+
+
     }
     public void Register(String name,String address,String contact,String email,String username,String password,String location ){
         //Back4App Parser
