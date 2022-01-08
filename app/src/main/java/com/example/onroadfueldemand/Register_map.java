@@ -129,11 +129,13 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
                         Toast.makeText(getApplicationContext(), "Successful Sign Up!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),Login.class);
                         intent.putExtra("key", "bunk");
+
                         startActivity(intent);
                     } else {
                         ParseUser.logOut();
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(),Login.class);
+                        intent.putExtra("key", "bunk");
                         startActivity(intent);
 
                     }
