@@ -1,6 +1,5 @@
 package com.example.onroadfueldemand;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +21,7 @@ public class Login extends AppCompatActivity {
     LinearLayout layout;
     TextView heading,option;
     EditText username,password;
-    @SuppressLint("SetTextI18n")
+   // @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +62,8 @@ public class Login extends AppCompatActivity {
                             if (parseUser != null) {
                                 //showAlert("Successful Login", "Welcome back " + username + " !");
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Login.this, AdminMain.class);
-                                startActivity(intent);
+                                Intent adminIntent = new Intent(Login.this, AdminMain.class);
+                                startActivity(adminIntent);
                             } else {
                                 ParseUser.logOut();
                                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -81,9 +80,22 @@ public class Login extends AppCompatActivity {
                     public void onClick(View v) {
                         String name = username.getText().toString();
                         String pass = password.getText().toString();
-                        login(name,pass);
-
-
+                        ProgressDialog progress  = new ProgressDialog(Login.this);
+                        progress.show();
+                        progress.setMessage("Please wait....");
+                        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
+                            progress.dismiss();
+                            if (parseUser != null) {
+                                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                Intent userIntent = new Intent(Login.this,UserMain.class);
+                                userIntent.putExtra("username",name);
+                                startActivity(userIntent);
+                            } else {
+                                ParseUser.logOut();
+                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
 
@@ -111,8 +123,9 @@ public class Login extends AppCompatActivity {
                         ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
                             progress.dismiss();
                             if (parseUser != null) {
-                                //showAlert("Successful Login", "Welcome back " + username + " !");
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                Intent bunkIntent = new Intent(Login.this,BunkMain.class);
+                                startActivity(bunkIntent);
                             } else {
                                 ParseUser.logOut();
                                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -139,24 +152,6 @@ public class Login extends AppCompatActivity {
     protected  void onRestart() {
         super.onRestart();
         Intent i = getIntent();
-
         heading.setText(i.getStringExtra("usertype"));
-    }
-
-    public void login(String username, String password){
-        ProgressDialog progress  = new ProgressDialog(this);
-        progress.show();
-        progress.setMessage("Please wait....");
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        ParseUser.logInInBackground(username, password, (parseUser, e) -> {
-            progress.dismiss();
-            if (parseUser != null) {
-                //showAlert("Successful Login", "Welcome back " + username + " !");
-                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-            } else {
-                ParseUser.logOut();
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }

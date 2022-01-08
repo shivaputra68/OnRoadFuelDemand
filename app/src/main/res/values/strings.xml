@@ -56,4 +56,10 @@
     <string name="userStatus">CHECK STATUS</string>
     <string name="userHistory">ORDER HISTORY</string>
 
+    <!-- Profile -->
+    <string name="profileName">Name</string>
+    <string name="profileEmail">Email</string>
+    <string name="profileContact">Contact</string>
+    <string name="profileUsername">Username</string>
+
 </resources>

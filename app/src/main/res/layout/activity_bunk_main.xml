@@ -55,8 +55,10 @@
                     android:padding="15dp"
                     tools:ignore="UseCompoundDrawables"
                     android:gravity="center">
-                    <ImageView
-                        android:layout_width="30dp"
+                    <ImageButton
+                        android:id="@+id/bunkHome"
+                        android:background="@android:color/transparent"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:contentDescription="@string/adminHome"
                         android:src="@drawable/icon_home"/>
@@ -85,8 +87,10 @@
                     tools:ignore="UseCompoundDrawables"
                     android:padding="15dp"
                     android:gravity="center">
-                    <ImageView
-                        android:layout_width="30dp"
+                    <ImageButton
+                        android:id="@+id/bunkProfile"
+                        android:background="@android:color/transparent"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:contentDescription="@string/adminProfile"
                         android:src="@drawable/icon_person"/>
@@ -116,8 +120,10 @@
                     android:padding="15dp"
                     tools:ignore="UseCompoundDrawables"
                     android:gravity="center">
-                    <ImageView
-                        android:layout_width="30dp"
+                    <ImageButton
+                        android:id="@+id/bunkOrders"
+                        android:background="@android:color/transparent"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:contentDescription="@string/adminBunk"
                         android:src="@drawable/icon_bunklist"/>
@@ -146,8 +152,9 @@
                     android:padding="15dp"
                     android:gravity="center"
                     tools:ignore="UseCompoundDrawables">
-                    <ImageView
-                        android:layout_width="30dp"
+                    <ImageButton
+                        android:background="@android:color/transparent"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:contentDescription="@string/adminLogout"
                         android:src="@drawable/icon_logout"/>
@@ -178,8 +185,9 @@
                     android:padding="15dp"
                     android:gravity="center"
                     tools:ignore="UseCompoundDrawables">
-                    <ImageView
-                        android:layout_width="30dp"
+                    <ImageButton
+                        android:background="@android:color/transparent"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:contentDescription="@string/adminLogout"
                         android:src="@drawable/icon_logout"/>
@@ -209,8 +217,10 @@
                     android:padding="15dp"
                     android:gravity="center"
                     tools:ignore="UseCompoundDrawables">
-                    <ImageView
-                        android:layout_width="30dp"
+                    <ImageButton
+                        android:id="@+id/bunkLogout"
+                        android:background="@android:color/transparent"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:contentDescription="@string/adminLogout"
                         android:src="@drawable/icon_logout"/>

@@ -23,6 +23,8 @@ public class AdminMain extends AppCompatActivity {
 
         logout = findViewById(R.id.adminLogout);
 
+
+        //logout action code
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
