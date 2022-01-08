@@ -18,11 +18,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp">
             <TextView
+                android:id="@+id/adminHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:textColor="@android:color/holo_blue_bright"
-                android:text="@string/adminHeading"
                 android:textStyle="bold|italic"
                 android:fontFamily="serif">
             </TextView>
@@ -87,6 +87,7 @@
                     android:padding="15dp"
                     android:gravity="center">
                     <ImageButton
+                        android:id="@+id/adminProfile"
                         android:background="@android:color/transparent"
                         android:layout_width="50dp"
                         android:layout_height="50dp"

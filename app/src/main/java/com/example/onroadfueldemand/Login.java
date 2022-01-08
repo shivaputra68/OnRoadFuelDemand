@@ -149,8 +149,8 @@ public class Login extends AppCompatActivity {
 
     //On resume code
     @Override
-    protected  void onRestart() {
-        super.onRestart();
+    protected  void onResume() {
+        super.onResume();
         Intent i = getIntent();
         heading.setText(i.getStringExtra("usertype"));
     }

@@ -18,11 +18,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp">
             <TextView
+                android:id="@+id/userHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:textColor="@android:color/holo_blue_bright"
-                android:text="@string/adminHeading"
                 android:textStyle="bold|italic"
                 android:fontFamily="serif">
             </TextView>

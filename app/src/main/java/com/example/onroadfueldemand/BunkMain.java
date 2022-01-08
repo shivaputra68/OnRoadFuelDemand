@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,8 @@ import com.parse.ParseUser;
 
 public class BunkMain extends AppCompatActivity {
 
-    ImageButton logout;
+    ImageButton logout,profile;
+    TextView heading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,25 @@ public class BunkMain extends AppCompatActivity {
         setContentView(R.layout.activity_bunk_main);
 
         logout = findViewById(R.id.bunkLogout);
+        profile = findViewById(R.id.bunkProfile);
+        heading = findViewById(R.id.bunkHeading);
+
+        ParseUser user = ParseUser.getCurrentUser();
+        heading.setText("HI, "+user.getUsername());
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("username");
+
+        //profile action code
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(BunkMain.this,ProfileView.class);
+                startActivity(intent);
+
+
+            }
+        });
 
         //Logout action code
         logout.setOnClickListener(new View.OnClickListener() {

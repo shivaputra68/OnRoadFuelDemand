@@ -41,14 +41,12 @@
     <string name="title_activity_register_map">Register_map</string>
 
     <!-- ADMIN HOME PAGE-->
-    <string name="adminHeading">WELCOME</string>
     <string name="adminHome">HOME</string>
     <string name="adminLogout">LOGOUT</string>
     <string name="adminProfile">PROFILE</string>
     <string name="adminBunk">BUNK REQUESTS</string>
 
     <!-- USER HOME PAGE -->
-    <string name="userHeading">WELCOME</string>
     <string name="userHome">HOME</string>
     <string name="userLogout">LOGOUT</string>
     <string name="userProfile">PROFILE</string>

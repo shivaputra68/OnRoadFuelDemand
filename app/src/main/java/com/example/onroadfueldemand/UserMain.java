@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.parse.ParseUser;
 public class UserMain extends AppCompatActivity {
 
     ImageButton logout,profile;
+    TextView heading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,10 @@ public class UserMain extends AppCompatActivity {
 
         logout = findViewById(R.id.userLogout);
         profile = findViewById(R.id.userProfile);
+        heading = findViewById(R.id.userHeading);
 
+        ParseUser user = ParseUser.getCurrentUser();
+        heading.setText("HI, "+user.getUsername());
         Intent intent = getIntent();
         String name = intent.getStringExtra("username");
 
@@ -33,6 +38,7 @@ public class UserMain extends AppCompatActivity {
 
                 Intent intent = new Intent(UserMain.this,ProfileView.class);
                 startActivity(intent);
+
 
             }
         });
