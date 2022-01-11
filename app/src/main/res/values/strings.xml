@@ -60,4 +60,20 @@
     <string name="profileContact">Contact</string>
     <string name="profileUsername">Username</string>
 
+
+    <!-- Order Details Page -->
+    <string name="orderHeading">ORDER DETAILS</string>
+    <string name="orderID">Order ID</string>
+    <string name="orderBunkName">Bunk Name</string>
+    <string name="orderBunkContact">Bunk Contact</string>
+    <string name="orderCustomerName">Customer Name</string>
+    <string name="orderCustomerContact">Customer Contact</string>
+    <string name="orderFuelType">Fuel Type</string>
+    <string name="orderFuelQuantity">Quantity</string>
+    <string name="orderFuelPrice">Price</string>
+    <string name="orderTotal">Total Amount</string>
+    <string name="orderButton">PLACE ORDER</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

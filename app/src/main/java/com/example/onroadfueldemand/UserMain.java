@@ -14,7 +14,7 @@ import com.parse.ParseUser;
 
 public class UserMain extends AppCompatActivity {
 
-    ImageButton logout,profile;
+    ImageButton logout,profile,orderFuel,viewOrders;
     TextView heading;
 
     @Override
@@ -25,6 +25,8 @@ public class UserMain extends AppCompatActivity {
         logout = findViewById(R.id.userLogout);
         profile = findViewById(R.id.userProfile);
         heading = findViewById(R.id.userHeading);
+        orderFuel = findViewById(R.id.userOrderFuel);
+        viewOrders = findViewById(R.id.viewOrders);
 
         ParseUser user = ParseUser.getCurrentUser();
         heading.setText("HI, "+user.getUsername());
@@ -59,6 +61,26 @@ public class UserMain extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+            }
+        });
+
+        //Order Fuel action code
+        orderFuel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent  = new Intent(UserMain.this, OrderFuel.class);
+                startActivity(intent);
+            }
+        });
+
+        //View orders action code
+        viewOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(UserMain.this,ViewOrders.class);
+                startActivity(intent);
             }
         });
     }

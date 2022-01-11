@@ -153,6 +153,7 @@
                     android:gravity="center"
                     tools:ignore="UseCompoundDrawables">
                     <ImageButton
+                        android:id="@+id/viewOrders"
                         android:background="@android:color/transparent"
                         android:layout_width="50dp"
                         android:layout_height="50dp"

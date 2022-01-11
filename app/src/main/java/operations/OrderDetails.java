@@ -2,11 +2,13 @@ package operations;
 
 public class OrderDetails {
 
-    private int orderno;
-    private String fuelType;
-    private float quantity,price;
+    int orderno = 12345;
+    String fuelType,bunkName,bunkContact,customerName,customerContact;
+    int quantity,price,total;
+
 
     public void calPrice(){
 
+        total = price*quantity;
     }
 }
