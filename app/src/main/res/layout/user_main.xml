@@ -158,7 +158,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:contentDescription="@string/userStatus"
-                        android:src="@drawable/icon_logout"/>
+                        android:src="@drawable/icon_check_status"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:contentDescription="@string/userHistory"
-                        android:src="@drawable/icon_logout"/>
+                        android:src="@drawable/icon_history"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
