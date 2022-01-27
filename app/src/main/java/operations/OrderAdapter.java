@@ -41,7 +41,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
     public void onBindViewHolder(@NonNull OrderAdapter.OrderHolder holder, int position) {
         holder.bunkName.setText(fuel.get(position).getBunkName());
         holder.fuelType.setText("Type : "+fuel.get(position).getFuelType());
-        holder.fuelPrice.setText("Price : "+fuel.get(position).getPrice()+" rs.");
+        holder.fuelPrice.setText("Price : "+fuel.get(position).getPrice());
         holder.bunkDistance.setText("Distance : "+fuel.get(position).getDistance()+" KM");
     }
 

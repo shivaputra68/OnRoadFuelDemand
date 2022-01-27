@@ -17,6 +17,7 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
 
     ArrayList<Fuel> fuel = new ArrayList<>();
     RecyclerView recyclerView;
+    ArrayList<String> bunkName, fuelType, fuelPrice, bunkDistance, bunkContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +31,39 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    //Values adding to the bean class Fuel
     private void setFuelStations(){
-        fuel.add( new Fuel("Indian Oil","petrol","70 rs","10 km"));
-        fuel.add( new Fuel("HP GAS","petrol","80 rs","18 km"));
-        fuel.add( new Fuel("Indian Oil","petrol","70 rs","10 km"));
-        fuel.add( new Fuel("HP GAS","petrol","80 rs","18 km"));
-        fuel.add( new Fuel("Indian Oil","petrol","70 rs","10 km"));
-        fuel.add( new Fuel("HP GAS","petrol","80 rs","18 km"));
-        fuel.add( new Fuel("Indian Oil","petrol","70 rs","10 km"));
-        fuel.add( new Fuel("HP GAS","petrol","80 rs","18 km"));
+       // addValues();
+        fuel.add( new Fuel("Indian Oil","petrol","70","10"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18"));
+        fuel.add( new Fuel("Indian Oil","petrol","70","10"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18"));
+        fuel.add( new Fuel("Indian Oil","petrol","70","10"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18"));
+        fuel.add( new Fuel("Indian Oil","petrol","70","10"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18"));
     }
 
+    //Values fetching from the database and adding to the Strings of array
+    private void addValues(){
+        bunkName = new ArrayList<>();
+        fuelType = new ArrayList<>();
+        fuelPrice = new ArrayList<>();
+        bunkDistance = new ArrayList<>();
+        bunkContact = new ArrayList<>();
+        //code to fetch data from database
+
+    }
+
+
+    // Intent passing to OrderDetails Activity with values
     @Override
     public void onItemClick(int position) {
 
         Intent intent = new Intent(OrderFuel.this, OrderDetails.class);
         intent.putExtra("bunkName",fuel.get(position).getBunkName());
+        intent.putExtra("fuelType", fuel.get(position).getFuelType());
+        intent.putExtra("fuelPrice", fuel.get(position).getPrice());
 
         startActivity(intent);
 

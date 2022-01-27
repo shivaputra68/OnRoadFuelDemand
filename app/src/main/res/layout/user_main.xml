@@ -55,13 +55,15 @@
                     android:padding="15dp"
                     tools:ignore="UseCompoundDrawables"
                     android:gravity="center">
+
                     <ImageButton
                         android:id="@+id/userHome"
-                        android:background="@android:color/transparent"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:background="@android:color/transparent"
                         android:contentDescription="@string/userHome"
-                        android:src="@drawable/icon_home"/>
+                        android:src="@drawable/icon_home"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -87,13 +89,15 @@
                     tools:ignore="UseCompoundDrawables"
                     android:padding="15dp"
                     android:gravity="center">
+
                     <ImageButton
                         android:id="@+id/userProfile"
-                        android:background="@android:color/transparent"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:background="@android:color/transparent"
                         android:contentDescription="@string/userProfile"
-                        android:src="@drawable/icon_person"/>
+                        android:src="@drawable/icon_person"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -120,13 +124,15 @@
                     android:padding="15dp"
                     tools:ignore="UseCompoundDrawables"
                     android:gravity="center">
+
                     <ImageButton
                         android:id="@+id/userOrderFuel"
-                        android:background="@android:color/transparent"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:background="@android:color/transparent"
                         android:contentDescription="@string/userFuelOrder"
-                        android:src="@drawable/icon_bunklist"/>
+                        android:src="@drawable/icon_bunklist"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -152,13 +158,15 @@
                     android:padding="15dp"
                     android:gravity="center"
                     tools:ignore="UseCompoundDrawables">
+
                     <ImageButton
                         android:id="@+id/viewOrders"
-                        android:background="@android:color/transparent"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:background="@android:color/transparent"
                         android:contentDescription="@string/userStatus"
-                        android:src="@drawable/icon_check_status"/>
+                        android:src="@drawable/icon_check_status"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -186,12 +194,14 @@
                     android:padding="15dp"
                     android:gravity="center"
                     tools:ignore="UseCompoundDrawables">
+
                     <ImageButton
-                        android:background="@android:color/transparent"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:background="@android:color/transparent"
                         android:contentDescription="@string/userHistory"
-                        android:src="@drawable/icon_history"/>
+                        android:src="@drawable/icon_history"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -218,13 +228,15 @@
                     android:padding="15dp"
                     android:gravity="center"
                     tools:ignore="UseCompoundDrawables">
+
                     <ImageButton
                         android:id="@+id/userLogout"
-                        android:background="@android:color/transparent"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:background="@android:color/transparent"
                         android:contentDescription="@string/adminLogout"
-                        android:src="@drawable/icon_logout"/>
+                        android:src="@drawable/icon_logout"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
