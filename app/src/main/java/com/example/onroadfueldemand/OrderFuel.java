@@ -34,14 +34,14 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
     //Values adding to the bean class Fuel
     private void setFuelStations(){
        // addValues();
-        fuel.add( new Fuel("Indian Oil","petrol","70","10"));
-        fuel.add( new Fuel("HP GAS","petrol","80","18"));
-        fuel.add( new Fuel("Indian Oil","petrol","70","10"));
-        fuel.add( new Fuel("HP GAS","petrol","80","18"));
-        fuel.add( new Fuel("Indian Oil","petrol","70","10"));
-        fuel.add( new Fuel("HP GAS","petrol","80","18"));
-        fuel.add( new Fuel("Indian Oil","petrol","70","10"));
-        fuel.add( new Fuel("HP GAS","petrol","80","18"));
+        fuel.add( new Fuel("Indian Oil","petrol","70","10","12345"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18","159486"));
+        fuel.add( new Fuel("Indian Oil","petrol","70","10","154896"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18","125436"));
+        fuel.add( new Fuel("Indian Oil","petrol","70","10","584967"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18","15846"));
+        fuel.add( new Fuel("Indian Oil","petrol","70","10","154896"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18","225846"));
     }
 
     //Values fetching from the database and adding to the Strings of array
@@ -51,6 +51,7 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
         fuelPrice = new ArrayList<>();
         bunkDistance = new ArrayList<>();
         bunkContact = new ArrayList<>();
+
         //code to fetch data from database
 
     }
@@ -64,6 +65,7 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
         intent.putExtra("bunkName",fuel.get(position).getBunkName());
         intent.putExtra("fuelType", fuel.get(position).getFuelType());
         intent.putExtra("fuelPrice", fuel.get(position).getPrice());
+        intent.putExtra("bunkContact", fuel.get(position).getBunkContact());
 
         startActivity(intent);
 

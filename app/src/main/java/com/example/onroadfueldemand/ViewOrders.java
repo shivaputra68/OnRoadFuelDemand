@@ -14,10 +14,9 @@ import operations.ViewOrder;
 
 public class ViewOrders extends AppCompatActivity {
 
-    RecyclerView recyclerView_viewOrder;
-    ArrayList<ViewOrder> orderHistory;
-    OrderViewAdapter adapter;
-    String[] bunkName,fuelType,price;
+    ArrayList<ViewOrder> orderHistory = new ArrayList<>();
+    RecyclerView recyclerView;
+    ArrayList<String> bunkName, fuelType, orderID, amount, orderStatus, orderDate, quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,48 +24,26 @@ public class ViewOrders extends AppCompatActivity {
         setContentView(R.layout.activity_view_orders);
 
         Intent i = getIntent();
-
-        recyclerView_viewOrder = findViewById(R.id.recyclerView_viewOrder);
-        recyclerView_viewOrder.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView_viewOrder.setHasFixedSize(true);
-
-        orderHistory = new ArrayList<ViewOrder>();
-        adapter = new OrderViewAdapter(this,orderHistory);
-        recyclerView_viewOrder.setAdapter(adapter);
-
-        bunkName = new String[]{
-                "Indian Oil",
-                "HP GAS",
-                "Reliance","Indian Oil","HP Gas","Oil India",
-                "Reliance","Indian Oil","HP Gas","Oil India",
-                "Reliance","Indian Oil","HP Gas","Oil India"
-        };
-
-        fuelType = new String[]{
-                "Petrol",
-                "Diesel",
-                "Petrol","Gas","Diesel","GAS",
-                "Petrol","Gas","Diesel","GAS",
-                "Petrol","Gas","Diesel","GAS"
-        };
-
-        price = new String[]{
-                "100",
-                "200",
-                "100","200","100","1000",
-                "100","200","100","1000",
-                "100","200","100","1000"
-        };
-        getData();
-
+        recyclerView = findViewById(R.id.recyclerView_viewOrder);
+        setViewOrders();
+        OrderViewAdapter adapter = new OrderViewAdapter(this, orderHistory);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void getData() {
+    private void setViewOrders() {
+        orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
+                "delivers","12/10/1999","3"));
 
-        for(int i=0;i<bunkName.length;i++){
-            ViewOrder history = new ViewOrder(bunkName[i],fuelType[i],"hi",price[i],"pending","22-10-2022" );
-            orderHistory.add(history);
-        }
-        adapter.notifyDataSetChanged();
+        orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
+                "delivers","12/10/1999","3"));
+        orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
+                "delivers","12/10/1999","3"));
+        orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
+                "delivers","12/10/1999","3"));
+    }
+
+    public void add(){
+
     }
 }

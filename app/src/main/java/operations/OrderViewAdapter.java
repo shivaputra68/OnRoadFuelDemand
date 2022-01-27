@@ -23,24 +23,23 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
         this.ordersHistory = ordersHistory;
     }
 
-
-
     @NonNull
     @Override
     public OrderViewAdapter.OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.bunk_list, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.view_orders, parent, false);
         return new OrderViewAdapter.OrderViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         ViewOrder viewOrder = ordersHistory.get(position);
-        holder.bunkName.setText(viewOrder.bunkName);
-        holder.fuelType.setText(viewOrder.fuelType);
-        holder.price.setText(viewOrder.price);
-       // holder.distance.setText(viewOrder.bunkName);
-       // holder.bunkName.setText(viewOrder.bunkName);
-
+        holder.orderID.setText("ID : "+viewOrder.getOrderID());
+        holder.bunkName.setText("Bunk : "+viewOrder.getBunkName());
+        holder.fuelType.setText("Fuel : "+viewOrder.getFuelType());
+        holder.quantity.setText("Quantity : "+viewOrder.getQuantity());
+        holder.amount.setText("Amount : "+viewOrder.getAmount());
+        holder.date.setText("Date : "+viewOrder.getOrderDate());
+        holder.status.setText("Status : "+viewOrder.getOrderStatus());
     }
 
 
@@ -51,15 +50,19 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
 
     public static class OrderViewHolder extends RecyclerView.ViewHolder{
 
-        TextView bunkName, fuelType, price, distance;
+        TextView orderID, bunkName, fuelType, quantity, amount, date, status;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
 
-           /* bunkName = itemView.findViewById(R.id.bunkName);
-            fuelType = itemView.findViewById(R.id.fuelType);
-            price = itemView.findViewById(R.id.fuelPrice);
-*/
+            orderID = itemView.findViewById(R.id.viewOrderOrderId);
+            bunkName = itemView.findViewById(R.id.viewOrderBunkName);
+            fuelType = itemView.findViewById(R.id.viewOrderFuelType);
+            quantity = itemView.findViewById(R.id.viewOrderFuelQuantity);
+            amount = itemView.findViewById(R.id.viewOrderAmount);
+            date = itemView.findViewById(R.id.viewOrderDate);
+            status = itemView.findViewById(R.id.viewOrderStatus);
+
         }
     }
 }

@@ -14,7 +14,7 @@ import com.parse.ParseUser;
 
 public class UserMain extends AppCompatActivity {
 
-    ImageButton logout,profile,orderFuel,viewOrders;
+    ImageButton logout,profile,orderFuel,viewOrders,orderStatus;
     TextView heading;
 
     @Override
@@ -27,6 +27,7 @@ public class UserMain extends AppCompatActivity {
         heading = findViewById(R.id.userHeading);
         orderFuel = findViewById(R.id.userOrderFuel);
         viewOrders = findViewById(R.id.viewOrders);
+        orderStatus = findViewById(R.id.orderStatus);
 
         ParseUser user = ParseUser.getCurrentUser();
         heading.setText("HI, "+user.getUsername());

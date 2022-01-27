@@ -8,17 +8,23 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.ParseUser;
 
+import java.util.Random;
+
 public class OrderDetails extends AppCompatActivity {
 
     EditText OrderDetailsID, OrderDetailsBunkName,OrderDetailsBunkContact,OrderDetailsCustomerName,OrderDetailsCustomerContact;
     EditText OrderDetailsFuelType,OrderDetailsFuelPrice,OrderDetailsFuelQuantity,OrderDetailsTotal;
     Button placeOrder;
+    TextView OrderDetailsErrorMessage;
+    Random random = new Random(1000);
+    int Order_id = random.nextInt();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +42,16 @@ public class OrderDetails extends AppCompatActivity {
         OrderDetailsFuelPrice = findViewById(R.id.orderDetailsFuelPrice);
         OrderDetailsFuelQuantity = findViewById(R.id.orderDetailsFuelQuantity);
         OrderDetailsTotal = findViewById(R.id.orderDetailsTotal);
+        OrderDetailsErrorMessage = findViewById(R.id.OrderDetailsErrorMessage);
         placeOrder = findViewById(R.id.orderDetailsPlaceOrder);
 
         //Intent values from order page
         OrderDetailsBunkName.setText(intent.getStringExtra("bunkName"));
         OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
         OrderDetailsFuelPrice.setText(intent.getStringExtra("fuelPrice"));
+        OrderDetailsBunkContact.setText(intent.getStringExtra("bunkContact"));
+        OrderDetailsID.setText(String.valueOf(Order_id));
+        Order_id += 1;
 
         //ffetching current user name and contact
         ParseUser user = ParseUser.getCurrentUser();
@@ -52,6 +62,7 @@ public class OrderDetails extends AppCompatActivity {
         //calculating total amount and set to the amount input text
         OrderDetailsFuelQuantity.addTextChangedListener(new TextWatcher() {
             float result=0;
+            int qty = 0;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 OrderDetailsTotal.setText("0.00");
@@ -59,14 +70,14 @@ public class OrderDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int qty = Integer.parseInt(OrderDetailsFuelQuantity.getText().toString());
+                qty = Integer.parseInt(OrderDetailsFuelQuantity.getText().toString());
                 float price = Float.parseFloat(OrderDetailsFuelPrice.getText().toString());
 
-                if(qty > 0){
+                if(qty >= 0){
                     result = qty * price;
-
                 }else{
-
+                    qty = 0;
+                    OrderDetailsErrorMessage.setText("Enter Valid Value!");
                 }
             }
 
@@ -106,7 +117,7 @@ public class OrderDetails extends AppCompatActivity {
         String OrderFuelType = OrderDetailsFuelType.getText().toString();
         Float OrderFuelPrice = Float.parseFloat(OrderDetailsFuelPrice.getText().toString());
         Float OrderFuelQuantity = Float.parseFloat(OrderDetailsFuelQuantity.getText().toString());
-        Float OrderTotal = OrderFuelPrice * OrderFuelQuantity;
+        Float Total = Float.parseFloat(OrderDetailsTotal.getText().toString());
 
         //databse operation
     }

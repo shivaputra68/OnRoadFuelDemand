@@ -160,7 +160,7 @@
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageButton
-                        android:id="@+id/viewOrders"
+                        android:id="@+id/orderStatus"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@android:color/transparent"
@@ -196,6 +196,7 @@
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageButton
+                        android:id="@+id/viewOrders"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@android:color/transparent"

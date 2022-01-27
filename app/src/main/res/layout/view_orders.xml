@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/viewOrderOrderId"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:fontFamily="serif-monospace"
+            android:text="orderID"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.183" />
+
+        <TextView
+            android:id="@+id/viewOrderBunkName"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:fontFamily="serif-monospace"
+            android:text="bunkName"
+            android:textColor="@color/blueblack"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewOrderOrderId" />/>
+
+        <TextView
+            android:id="@+id/viewOrderFuelType"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="serif-monospace"
+            android:text="fuel type"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewOrderBunkName" />
+
+        <TextView
+            android:id="@+id/viewOrderFuelQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="serif-monospace"
+            android:text="Quantity"
+            android:textColor="@color/blueblack"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewOrderFuelType"
+            tools:ignore="InvalidId" />
+
+        <TextView
+            android:id="@+id/viewOrderAmount"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="serif-monospace"
+            android:text="amount"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewOrderFuelQuantity" />
+
+        <TextView
+            android:id="@+id/viewOrderDate"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="serif-monospace"
+            android:text="Date"
+            android:textColor="@color/blueblack"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewOrderAmount" />
+
+        <TextView
+            android:id="@+id/viewOrderStatus"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="serif-monospace"
+            android:text="status"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewOrderDate" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
