@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnRoadFuelDemand">
         <activity
+            android:name=".OrderFuel"
+            android:exported="false" />
+        <activity
             android:name=".ViewOrders"
             android:exported="false" />
         <activity
@@ -26,9 +29,6 @@
             android:exported="false" />
         <activity
             android:name=".OrderDetails"
-            android:exported="false" />
-        <activity
-            android:name=".OrderFuel"
             android:exported="false" />
         <activity
             android:name=".ProfileView"

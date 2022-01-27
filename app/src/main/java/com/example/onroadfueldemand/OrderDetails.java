@@ -55,8 +55,6 @@ public class OrderDetails extends AppCompatActivity {
                 });
             }
         });
-
-
     }
 
     private void Orders() {
@@ -72,7 +70,5 @@ public class OrderDetails extends AppCompatActivity {
         int OrderTotal = OrderFuelPrice * OrderFuelQuantity;
 
         //databse operation
-
-
     }
 }

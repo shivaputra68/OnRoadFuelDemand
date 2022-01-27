@@ -56,10 +56,10 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            bunkName = itemView.findViewById(R.id.bunkName);
+           /* bunkName = itemView.findViewById(R.id.bunkName);
             fuelType = itemView.findViewById(R.id.fuelType);
             price = itemView.findViewById(R.id.fuelPrice);
-
+*/
         }
     }
 }

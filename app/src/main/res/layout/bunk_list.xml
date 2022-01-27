@@ -2,96 +2,92 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bunkList"
     android:layout_width="match_parent"
-    app:layout_constraintCircleRadius="20dp"
-    android:layout_height="220dp"
-    android:background="@android:color/holo_purple" >
+    android:layout_height="wrap_content"
+    tools:context=".OrderFuel">
 
-    <TextView
-        android:id="@+id/bunkName"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HELLO"
-        android:textSize="25sp"
+        android:layout_marginTop="80dp"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold|italic"
-        android:fontFamily="serif-monospace"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="100dp"
-        android:layout_margin="20dp"
-        android:src="@drawable/icon_person"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.015"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/orderHeading"
+        android:src="@drawable/fuel_icon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/fuelType"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_margin="20dp"
-        android:text="fuel type"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.832"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.305" />
+            <TextView
+                android:id="@+id/fuelBunkName"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="monospace"
+                android:text="Bunk Name"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.838"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/fuelType"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="40dp"
+                android:text="type"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.87"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/fuelBunkName" />
 
     <TextView
         android:id="@+id/fuelPrice"
         android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_margin="20dp"
-        android:text="fuel type"
-        android:textColor="@android:color/white"
+        android:layout_height="30dp"
+        android:text="price"
         android:textSize="20sp"
+        android:textColor="@android:color/primary_text_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647" />
+        app:layout_constraintVertical_bias="0.703" />
 
     <TextView
-        android:id="@+id/bunkDistance"
+        android:id="@+id/fuelBunkDistance"
         android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_margin="20dp"
-        android:text="fuel type"
-        android:textColor="@android:color/white"
+        android:layout_height="30dp"
+        android:text="Distance"
+        android:textColor="@android:color/primary_text_light"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.994" />
+        app:layout_constraintTop_toTopOf="@+id/fuelBunkName"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.994" />
-
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package operations;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,71 +9,70 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onroadfueldemand.OrderFuel;
 import com.example.onroadfueldemand.R;
 
 import java.util.ArrayList;
 
+import Interfaces.OrderFuelRecyclerClickListner;
+
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder> {
 
     Context context;
-    ArrayList<Fuel> FuelDetails;
+    ArrayList<Fuel> fuel;
+    private final OrderFuelRecyclerClickListner recyclerClickListner;
 
-    public OrderAdapter(Context context, ArrayList<Fuel> fuelDetails) {
+    public OrderAdapter(Context context, ArrayList<Fuel> fuel, OrderFuelRecyclerClickListner recyclerClickListner){
         this.context = context;
-        FuelDetails = fuelDetails;
+        this.fuel = fuel;
+        this.recyclerClickListner = recyclerClickListner;
+
     }
 
     @NonNull
     @Override
     public OrderAdapter.OrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.bunk_list,parent,false);
 
-        View v = LayoutInflater.from(context).inflate(R.layout.bunk_list, parent, false);
-        return new OrderHolder(v);
+        return new OrderAdapter.OrderHolder(view, recyclerClickListner);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OrderAdapter.OrderHolder holder, int position) {
-
-        Fuel fuel = FuelDetails.get(position);
-        holder.bunkName.setText("Bunk : " + fuel.bunkName);
-        holder.fuelType.setText("Fuel Type : " + fuel.fuelType);
-        holder.price.setText("Price/Ltr : " + fuel.price + " rs.");
-        holder.distance.setText("Distance : " + fuel.distance + " km");
+        holder.bunkName.setText(fuel.get(position).getBunkName());
+        holder.fuelType.setText("Type : "+fuel.get(position).getFuelType());
+        holder.fuelPrice.setText("Price : "+fuel.get(position).getPrice()+" rs.");
+        holder.bunkDistance.setText("Distance : "+fuel.get(position).getDistance()+" KM");
     }
 
     @Override
     public int getItemCount() {
-        return FuelDetails.size();
+        return fuel.size();
     }
 
     public static class OrderHolder extends RecyclerView.ViewHolder {
 
-        TextView bunkName, fuelType, price, distance;
+        TextView bunkName, fuelType,fuelPrice,bunkDistance;
 
-        public OrderHolder(@NonNull View itemView) {
+        public OrderHolder(@NonNull View itemView, OrderFuelRecyclerClickListner recyclerClickListner) {
             super(itemView);
 
-            bunkName = itemView.findViewById(R.id.bunkName);
+            bunkName = itemView.findViewById(R.id.fuelBunkName);
             fuelType = itemView.findViewById(R.id.fuelType);
-            price = itemView.findViewById(R.id.fuelPrice);
-            distance = itemView.findViewById(R.id.bunkDistance);
-            OrderFuel orderFuel = new OrderFuel();
+            fuelPrice = itemView.findViewById(R.id.fuelPrice);
+            bunkDistance = itemView.findViewById(R.id.fuelBunkDistance);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(itemView.getContext(),OrderDetails.class);
+                    if(recyclerClickListner != null){
+                        int pos = getAdapterPosition();
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerClickListner.onItemClick(pos);
+                        }
+                    }
                 }
             });
-
-           /* fuelType.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(, OrderDetails.class);
-                    orderFuel.startActivity(intent);
-                }
-            });*/
         }
     }
-
 }
