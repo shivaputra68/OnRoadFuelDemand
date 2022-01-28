@@ -19,13 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnRoadFuelDemand">
         <activity
+            android:name=".TraceOrder"
+            android:exported="false" />
+        <activity
             android:name=".OrderFuel"
             android:exported="false" />
         <activity
             android:name=".ViewOrders"
-            android:exported="false" />
-        <activity
-            android:name=".TraceOrder"
             android:exported="false" />
         <activity
             android:name=".OrderDetails"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="20dp"
-    android:background="@color/blueblack"
+    android:background="@color/blueBlack"
     tools:context=".OrderFuel">
 
     <androidx.recyclerview.widget.RecyclerView

@@ -1,5 +1,6 @@
 package com.example.onroadfueldemand;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity {
     TextView heading,option;
     EditText username,password;
    // @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +62,6 @@ public class Login extends AppCompatActivity {
                         ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
                             progress.dismiss();
                             if (parseUser != null) {
-                                //showAlert("Successful Login", "Welcome back " + username + " !");
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                                 Intent adminIntent = new Intent(Login.this, AdminMain.class);
                                 startActivity(adminIntent);

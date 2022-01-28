@@ -9,12 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.parse.ParseUser;
-
 import java.util.Random;
 
 public class OrderDetails extends AppCompatActivity {
@@ -23,8 +20,8 @@ public class OrderDetails extends AppCompatActivity {
     EditText OrderDetailsFuelType,OrderDetailsFuelPrice,OrderDetailsFuelQuantity,OrderDetailsTotal;
     Button placeOrder;
     TextView OrderDetailsErrorMessage;
-    Random random = new Random(1000);
-    int Order_id = random.nextInt();
+    static Random random = new Random();
+    static int Order_id = random.nextInt(10000);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +48,9 @@ public class OrderDetails extends AppCompatActivity {
         OrderDetailsFuelPrice.setText(intent.getStringExtra("fuelPrice"));
         OrderDetailsBunkContact.setText(intent.getStringExtra("bunkContact"));
         OrderDetailsID.setText(String.valueOf(Order_id));
-        Order_id += 1;
 
-        //ffetching current user name and contact
+
+        //fetching current user name and contact
         ParseUser user = ParseUser.getCurrentUser();
         OrderDetailsCustomerName.setText(user.getUsername());
         OrderDetailsCustomerContact.setText((CharSequence) user.get("contact"));
@@ -101,8 +98,10 @@ public class OrderDetails extends AppCompatActivity {
                         Orders();
                         Intent intent = new Intent(OrderDetails.this, UserMain.class);
                         startActivity(intent);
+                        Order_id += 1;
                     }
                 });
+                alert.show();
             }
         });
     }
@@ -119,6 +118,6 @@ public class OrderDetails extends AppCompatActivity {
         Float OrderFuelQuantity = Float.parseFloat(OrderDetailsFuelQuantity.getText().toString());
         Float Total = Float.parseFloat(OrderDetailsTotal.getText().toString());
 
-        //databse operation
+        //dataBse operation
     }
 }

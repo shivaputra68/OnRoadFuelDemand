@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    android:background="@color/blueBlack"
     tools:context=".ViewOrders">
 
     <androidx.recyclerview.widget.RecyclerView

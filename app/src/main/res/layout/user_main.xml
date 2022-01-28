@@ -33,6 +33,7 @@
             android:layout_height="match_parent"
             android:rowCount="3"
             android:columnCount="2"
+            android:background="#5D1049"
             android:padding="20dp"
             android:layout_margin="20dp"
             android:columnOrderPreserved="false"
@@ -68,7 +69,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:textColor="#000"
+                        android:textColor="#5D1049"
+                        android:textStyle="bold"
                         android:textAlignment="center"
                         android:text="@string/userHome"/>
                 </LinearLayout>
@@ -102,7 +104,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:textColor="#000"
+                        android:textColor="#5D1049"
+                        android:textStyle="bold"
                         android:textAlignment="center"
                         android:text="@string/userProfile"/>
                 </LinearLayout>
@@ -137,7 +140,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:textColor="#000"
+                        android:textColor="#5D1049"
+                        android:textStyle="bold"
                         android:textAlignment="center"
                         android:text="@string/userFuelOrder"/>
                 </LinearLayout>
@@ -172,7 +176,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:textAlignment="center"
-                        android:textColor="#000"
+                        android:textColor="#5D1049"
+                        android:textStyle="bold"
                         android:text="@string/userStatus"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -208,7 +213,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:textAlignment="center"
-                        android:textColor="#000"
+                        android:textColor="#5D1049"
+                        android:textStyle="bold"
                         android:text="@string/userHistory"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -243,7 +249,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:textAlignment="center"
-                        android:textColor="#000"
+                        android:textColor="#5D1049"
+                        android:textStyle="bold"
                         android:text="@string/adminLogout"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

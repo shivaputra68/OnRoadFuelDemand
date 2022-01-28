@@ -32,7 +32,6 @@ public class UserMain extends AppCompatActivity {
         ParseUser user = ParseUser.getCurrentUser();
         heading.setText("HI, "+user.getUsername());
         Intent intent = getIntent();
-        String name = intent.getStringExtra("username");
 
         //profile action code
         profile.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +57,7 @@ public class UserMain extends AppCompatActivity {
                     if (e == null) {
                         Toast.makeText(getApplicationContext(), "Logged out Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(UserMain.this, Login.class);
-                        intent.putExtra("usertype", "ADMIN");
+                        intent.putExtra("usertype", "user");
                         startActivity(intent);
                     }
                 });
@@ -71,6 +70,15 @@ public class UserMain extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent  = new Intent(UserMain.this, OrderFuel.class);
+                startActivity(intent);
+            }
+        });
+
+        orderStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(UserMain.this, TraceOrder.class);
                 startActivity(intent);
             }
         });
