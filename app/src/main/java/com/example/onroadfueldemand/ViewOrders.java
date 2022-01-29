@@ -34,7 +34,6 @@ public class ViewOrders extends AppCompatActivity {
     private void setViewOrders() {
         orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
                 "delivers","12/10/1999","3"));
-
         orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
                 "delivers","12/10/1999","3"));
         orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",

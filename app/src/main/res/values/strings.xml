@@ -60,6 +60,14 @@
     <string name="profileContact">Contact</string>
     <string name="profileUsername">Username</string>
 
+    <!--BUNK HOME PAGE-->
+    <string name="bunkHome">HOME</string>
+    <string name="bunkLogout">LOGOUT</string>
+    <string name="bunkProfile">PROFILE</string>
+    <string name="bunkOrderRequest">ORDERS</string>
+    <string name="bunkOrderHistory">HISTORY</string>
+    <string name="bunkUpdate">UPDATES</string>
+
 
     <!-- Order Details Page -->
     <string name="orderHeading">ORDER DETAILS</string>
@@ -76,4 +84,37 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- string array for fuel type-->
+    <string-array name="fuelType">
+        <item>Petrol</item>
+        <item>Diesel</item>
+        <item>Petrol &amp; Diesel</item>
+    </string-array>
+
+    <!-- string array for fuel avaialability-->
+    <string-array name="fuelAvailable">
+        <item>Available</item>
+        <item>UnAvailable</item>
+        <item>Self Service</item>
+    </string-array>
+
+    <!-- Bunk Update Activity-->
+    <string name="fuelType">Select Fuel Type</string>
+    <string name="petrolPrice">Petrol Price</string>
+    <string name="dieselPrice">Diesel Price</string>
+    <string name="fuelAvail">Service Availability</string>
+    <string name="updateButton">UPDATE</string>
+
+    <!-- Bunk Request -->
+    <string name="bunkRequestUpdate">UPDATE</string>
+    <string name="bunkRequestReject">REJECT</string>
+    <string name="bunkRequestStatus">Update Status</string>
+
+    <!-- string array for bunk order updation-->
+    <string-array name="bunkRequestUpdate">
+        <item>Pending</item>
+        <item>Accept</item>
+        <item>Reject</item>
+        <item>Delivered</item>
+    </string-array>
 </resources>

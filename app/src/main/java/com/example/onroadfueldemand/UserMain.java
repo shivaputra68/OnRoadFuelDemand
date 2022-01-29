@@ -20,7 +20,7 @@ public class UserMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_main);
+        setContentView(R.layout.activity_user_main);
 
         logout = findViewById(R.id.userLogout);
         profile = findViewById(R.id.userProfile);
