@@ -14,7 +14,7 @@ import com.parse.ParseUser;
 
 public class BunkMain extends AppCompatActivity {
 
-    ImageButton logout,profile;
+    ImageButton logout,profile,update,history;
     TextView heading;
 
     @Override
@@ -24,6 +24,8 @@ public class BunkMain extends AppCompatActivity {
 
         logout = findViewById(R.id.bunkLogout);
         profile = findViewById(R.id.bunkProfile);
+        update = findViewById(R.id.bunkUpdate);
+        history = findViewById(R.id.bunkMainHistory);
         heading = findViewById(R.id.bunkHeading);
 
         ParseUser user = ParseUser.getCurrentUser();
@@ -59,6 +61,24 @@ public class BunkMain extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+            }
+        });
+
+        //update action code
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), BunkUpdate.class);
+                startActivity(i);
+            }
+        });
+
+        //History action code
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), BunkHistory.class);
+                startActivity(i);
             }
         });
     }

@@ -19,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnRoadFuelDemand">
         <activity
+            android:name=".BunkHistory"
+            android:exported="false" />
+        <activity
+            android:name=".BunkUpdate"
+            android:exported="false" />
+        <activity
             android:name=".TraceOrder"
             android:exported="false" />
         <activity

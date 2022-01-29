@@ -62,7 +62,6 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
             amount = itemView.findViewById(R.id.viewOrderAmount);
             date = itemView.findViewById(R.id.viewOrderDate);
             status = itemView.findViewById(R.id.viewOrderStatus);
-
         }
     }
 }

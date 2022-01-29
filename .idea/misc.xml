@@ -18,7 +18,9 @@
         <entry key="app/src/main/res/drawable/login_button_design.xml" value="0.3421875" />
         <entry key="app/src/main/res/layout-v28/activity_trace_order.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_bunk_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_bunk_history.xml" value="0.1921875" />
+        <entry key="app/src/main/res/layout/activity_bunk_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_bunk_update.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/activity_login_user.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -33,8 +35,10 @@
         <entry key="app/src/main/res/layout/activity_user_register.xml" value="0.32083333333333336" />
         <entry key="app/src/main/res/layout/activity_userregister.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_view_orders.xml" value="0.2375" />
+        <entry key="app/src/main/res/layout/bunk_history.xml" value="0.33" />
         <entry key="app/src/main/res/layout/bunk_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bunk_list1.xml" value="0.34103260869565216" />
+        <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/fragment_view_orders.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/user_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/view_orders.xml" value="0.33" />
