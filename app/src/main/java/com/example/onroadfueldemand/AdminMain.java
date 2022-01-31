@@ -2,6 +2,7 @@ package com.example.onroadfueldemand;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,7 +16,7 @@ import com.parse.ParseUser;
 public class AdminMain extends AppCompatActivity {
 
     //Object Declaration
-    ImageButton logout,profile;
+    ImageButton logout,profile,bunkRequest,home;
     TextView heading;
 
     @Override
@@ -26,6 +27,8 @@ public class AdminMain extends AppCompatActivity {
         logout = findViewById(R.id.adminLogout);
         profile = findViewById(R.id.adminProfile);
         heading = findViewById(R.id.adminHeading);
+        home = findViewById(R.id.adminHome);
+        bunkRequest = findViewById(R.id.adminBunkRequest);
 
         ParseUser user = ParseUser.getCurrentUser();
         heading.setText("HI, "+user.getUsername());
@@ -58,6 +61,23 @@ public class AdminMain extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://www.back4app.com/#"));
+                startActivity(intent);
+            }
+        });
+
+        bunkRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminMain.this, AdminBunkRequest.class);
+                startActivity(intent);
             }
         });
     }

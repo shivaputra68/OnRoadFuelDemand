@@ -24,8 +24,7 @@
                 android:textSize="30sp"
                 android:textColor="#FF0266"
                 android:textStyle="bold|italic"
-                android:fontFamily="serif">
-            </TextView>
+                android:fontFamily="serif"/>
         </RelativeLayout>
 
         <GridLayout

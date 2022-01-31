@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 import java.util.ArrayList;
 
 import operations.BunkHistoryAdapter;
@@ -25,16 +29,24 @@ public class BunkHistory extends AppCompatActivity {
         recyclerViewBunkHistory = findViewById(R.id.recyclerView_bunkHistory);
         Intent i = getIntent();
         setBunkHistory();
-        BunkHistoryAdapter adapter = new BunkHistoryAdapter(this, list);
-        recyclerViewBunkHistory.setAdapter(adapter);
-        recyclerViewBunkHistory.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
     private void setBunkHistory() {
-        list.add(new BunkHistoryModel("123","shiva","petrol","2","100","delivered","18/10/1000"));
-        list.add(new BunkHistoryModel("123","shiva","petrol","2","100","delivered","18/10/1000"));
-        list.add(new BunkHistoryModel("123","shiva","petrol","2","100","delivered","18/10/1000"));
 
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
+        query.whereEqualTo("bunk_name", ParseUser.getCurrentUser().getUsername());
+        query.findInBackground(((objects, e) -> {
+
+            for(int i=0;i<objects.size();i++){
+                list.add(new BunkHistoryModel(objects.get(i).getObjectId().toString(), objects.get(i).get("customer_name").toString(),
+                        objects.get(i).get("fuel_type").toString(), objects.get(i).get("quantity").toString(), objects.get(i).get("total_amount").toString(),
+                        objects.get(i).get("status").toString(), objects.get(i).get("date").toString()));
+            }
+
+            BunkHistoryAdapter adapter = new BunkHistoryAdapter(this, list);
+            recyclerViewBunkHistory.setAdapter(adapter);
+            recyclerViewBunkHistory.setLayoutManager(new LinearLayoutManager(this));
+        }));
     }
 }

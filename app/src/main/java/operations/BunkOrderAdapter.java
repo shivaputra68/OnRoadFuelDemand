@@ -66,6 +66,7 @@ public class BunkOrderAdapter extends RecyclerView.Adapter<BunkOrderAdapter.Bunk
         return bunkOrder.size();
     }
 
+
     public static class BunkOrderHolder extends RecyclerView.ViewHolder {
 
         TextView orderId,cusName,cusContact, fuelType, quantity, amount, location;
@@ -94,6 +95,7 @@ public class BunkOrderAdapter extends RecyclerView.Adapter<BunkOrderAdapter.Bunk
                         int pos = getAdapterPosition();
                         if(pos != RecyclerView.NO_POSITION){
                             recyclerClickListner.onItemClick(pos);
+
                         }
                     }
                 }

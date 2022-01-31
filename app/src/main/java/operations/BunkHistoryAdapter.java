@@ -34,7 +34,7 @@ public class BunkHistoryAdapter extends RecyclerView.Adapter<BunkHistoryAdapter.
     public void onBindViewHolder(@NonNull BunkHistoryAdapter.BunkHistoryHolder holder, int position) {
         BunkHistoryModel model = list.get(position);
         holder.orderID.setText("ID : "+model.getOrderId());
-        holder.cusName.setText("Bunk : "+model.getCusName());
+        holder.cusName.setText("Customer : "+model.getCusName());
         holder.fuelType.setText("Fuel : "+model.getFuelType());
         holder.quantity.setText("Quantity : "+model.getQuantity());
         holder.amount.setText("Amount : "+model.getAmount());

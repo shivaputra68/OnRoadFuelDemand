@@ -6,24 +6,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
-import java.util.ArrayList;
-
-import operations.TraceOrderBean;
+import com.parse.ParseUser;
 
 public class TraceOrder extends AppCompatActivity {
 
     Button cancelButton;
     TextView bunkName, fuelType,status;
     ProgressBar progressBar;
-    ArrayList<TraceOrderBean> traceOrder = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,23 +29,14 @@ public class TraceOrder extends AppCompatActivity {
         progressBar = findViewById(R.id.traceOrderProgressBar);
         Intent intent = getIntent();
 
-        ParseQuery<ParseObject> order = new ParseQuery<>("orders");
-        order.whereContains("customer_name", intent.getStringExtra("customer_name"));
-        //order.whereNotContains("status","Delivered");
-
-        order.findInBackground(((objects, e) -> {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
+        query.whereEqualTo("customer_name", ParseUser.getCurrentUser().getUsername());
+        query.whereNotEqualTo("status", "Delivered");
+        query.findInBackground(((objects, e) -> {
             if(e == null){
-                try {
-                    System.out.println("*****************************************");
-                    bunkName.setText("Bunk : "+ order.get("bunk_name").toString());
-                    fuelType.setText("Fuel : "+ order.get("fuel_type").toString());
-                    status.setText("Status : "+ order.get("status").toString());
-                } catch (ParseException parseException) {
-                    parseException.printStackTrace();
-                }
-            }else{
-                System.out.println("++++++++++++++++++++++++++++++++++");
-                e.printStackTrace();
+                bunkName.setText("Name : "+objects.get(0).get("bunk_name").toString());
+                fuelType.setText("Fuel : "+objects.get(0).get("fuel_type").toString());
+                status.setText("Status : "+objects.get(0).get("status").toString());
             }
         }));
 
