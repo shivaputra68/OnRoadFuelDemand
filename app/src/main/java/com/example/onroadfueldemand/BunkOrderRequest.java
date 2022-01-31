@@ -15,10 +15,8 @@ import operations.BunkOrderAdapter;
 
 public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecyclerClickListner {
 
-
     ArrayList<BunkOrder> bunkOrder = new ArrayList<BunkOrder>();
     RecyclerView recyclerView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
