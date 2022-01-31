@@ -7,14 +7,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import operations.OrderViewAdapter;
 import operations.ViewOrder;
 
 public class ViewOrders extends AppCompatActivity {
 
-    ArrayList<ViewOrder> orderHistory = new ArrayList<>();
+    ArrayList<ViewOrder> orderHistory ;
     RecyclerView recyclerView;
     ArrayList<String> bunkName, fuelType, orderID, amount, orderStatus, orderDate, quantity;
 
@@ -32,14 +39,31 @@ public class ViewOrders extends AppCompatActivity {
     }
 
     private void setViewOrders() {
-        orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
+      /*  orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
                 "delivers","12/10/1999","3"));
         orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
                 "delivers","12/10/1999","3"));
         orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
                 "delivers","12/10/1999","3"));
         orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
-                "delivers","12/10/1999","3"));
+                "delivers","12/10/1999","3"));*/
+
+        ParseQuery<ParseObject> obj = new ParseQuery<ParseObject>("order");
+        //obj.whereFullText("customer_name", ParseUser.getCurrentUser().getUsername());
+        obj.whereEqualTo("customer_name", ParseUser.getCurrentUser().getUsername());
+        obj.orderByDescending("updateAt");
+        obj.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                orderHistory = new ArrayList<>();
+                for(ParseObject object : objects){
+                    orderHistory.add(new ViewOrder(object.get("bunk_name").toString(), object.get("fuel_type").toString(),
+                            object.getObjectId().toString(), object.get("total_amount").toString(),object.get("status").toString(),
+                            object.get("date").toString(),object.get("quantity").toString()));
+                }
+            }
+        });
+
     }
 
     public void add(){

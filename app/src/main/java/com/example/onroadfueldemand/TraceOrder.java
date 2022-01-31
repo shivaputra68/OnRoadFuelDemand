@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
 
 import operations.TraceOrderBean;
@@ -33,7 +37,25 @@ public class TraceOrder extends AppCompatActivity {
         progressBar = findViewById(R.id.traceOrderProgressBar);
         Intent intent = getIntent();
 
-        setValues();
+        ParseQuery<ParseObject> order = new ParseQuery<>("orders");
+        order.whereContains("customer_name", intent.getStringExtra("customer_name"));
+        //order.whereNotContains("status","Delivered");
+
+        order.findInBackground(((objects, e) -> {
+            if(e == null){
+                try {
+                    System.out.println("*****************************************");
+                    bunkName.setText("Bunk : "+ order.get("bunk_name").toString());
+                    fuelType.setText("Fuel : "+ order.get("fuel_type").toString());
+                    status.setText("Status : "+ order.get("status").toString());
+                } catch (ParseException parseException) {
+                    parseException.printStackTrace();
+                }
+            }else{
+                System.out.println("++++++++++++++++++++++++++++++++++");
+                e.printStackTrace();
+            }
+        }));
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +63,5 @@ public class TraceOrder extends AppCompatActivity {
 
             }
         });
-    }
-
-    protected void setValues(){
-        traceOrder.add(new TraceOrderBean("indian oil","petrol","Accepted"));
-        bunkName.setText("Bunk : "+traceOrder.get(0).getBunkName());
-        fuelType.setText("Fuel : "+traceOrder.get(0).getFuelType());
-        status.setText("Status : "+traceOrder.get(0).getStatus());
     }
 }

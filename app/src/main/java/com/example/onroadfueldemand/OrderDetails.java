@@ -11,17 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
-import java.util.Random;
+import com.parse.SaveCallback;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class OrderDetails extends AppCompatActivity {
 
-    EditText OrderDetailsID, OrderDetailsBunkName,OrderDetailsBunkContact,OrderDetailsCustomerName,OrderDetailsCustomerContact;
+    EditText OrderDetailsAddress, OrderDetailsBunkName,OrderDetailsBunkContact,OrderDetailsCustomerName,OrderDetailsCustomerContact;
     EditText OrderDetailsFuelType,OrderDetailsFuelPrice,OrderDetailsFuelQuantity,OrderDetailsTotal;
     Button placeOrder;
     TextView OrderDetailsErrorMessage;
-    static Random random = new Random();
-    static int Order_id = random.nextInt(10000);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ public class OrderDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         // mapping of components to the variables
-        OrderDetailsID = findViewById(R.id.orderDetailsID);
+        OrderDetailsAddress = findViewById(R.id.orderDetailsAddress);
         OrderDetailsBunkName = findViewById(R.id.orderDetailsBunkName);
         OrderDetailsBunkContact = findViewById(R.id.orderDetailsBunkContact);
         OrderDetailsCustomerName = findViewById(R.id.orderDetailsCustomerName);
@@ -47,8 +50,6 @@ public class OrderDetails extends AppCompatActivity {
         OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
         OrderDetailsFuelPrice.setText(intent.getStringExtra("fuelPrice"));
         OrderDetailsBunkContact.setText(intent.getStringExtra("bunkContact"));
-        OrderDetailsID.setText(String.valueOf(Order_id));
-
 
         //fetching current user name and contact
         ParseUser user = ParseUser.getCurrentUser();
@@ -88,36 +89,42 @@ public class OrderDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(OrderDetails.this);
-                alert.setTitle("Fuel Order");
-                alert.setMessage("Your Order Has Been Placed");
-                alert.setCancelable(false);
-                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                Date cal = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+                //dataBse operation
+                ParseObject order = new ParseObject("order");
+                order.put("bunk_name",OrderDetailsBunkName.getText().toString());
+                order.put("bunk_contact",OrderDetailsBunkContact.getText().toString());
+                order.put("customer_name", OrderDetailsCustomerName.getText().toString());
+                order.put("customer_contact",OrderDetailsCustomerContact.getText().toString());
+                order.put("fuel_type",OrderDetailsFuelType.getText().toString());
+                order.put("price",Integer.parseInt(OrderDetailsFuelPrice.getText().toString()));
+                order.put("quantity",Integer.parseInt(OrderDetailsFuelQuantity.getText().toString()));
+                order.put("total_amount", Float.parseFloat(OrderDetailsTotal.getText().toString()));
+                order.put("address", OrderDetailsAddress.getText().toString());
+                order.put("status", "Pending");
+                order.put("date", df.format(cal));
+                order.saveInBackground(new SaveCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Orders();
-                        Intent intent = new Intent(OrderDetails.this, UserMain.class);
-                        startActivity(intent);
-                        Order_id += 1;
+                    public void done(ParseException e) {
+                        if(e == null){
+                            AlertDialog.Builder alert = new AlertDialog.Builder(OrderDetails.this);
+                            alert.setTitle("Fuel Order");
+                            alert.setMessage("Your Order Has Been Placed");
+                            alert.setCancelable(false);
+                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(OrderDetails.this, UserMain.class);
+                                    startActivity(intent);
+                                }
+                            });
+                            alert.show();
+                        }
                     }
                 });
-                alert.show();
             }
         });
-    }
-
-    private void Orders() {
-
-        String OrderID = OrderDetailsID.getText().toString();
-        String OrderBunkName = OrderDetailsBunkName.getText().toString();
-        String OrderBunkContact = OrderDetailsBunkContact.getText().toString();
-        String OrderCustomerName = OrderDetailsCustomerName.getText().toString();
-        String OrderCustomerContact = OrderDetailsCustomerContact.getText().toString();
-        String OrderFuelType = OrderDetailsFuelType.getText().toString();
-        Float OrderFuelPrice = Float.parseFloat(OrderDetailsFuelPrice.getText().toString());
-        Float OrderFuelQuantity = Float.parseFloat(OrderDetailsFuelQuantity.getText().toString());
-        Float Total = Float.parseFloat(OrderDetailsTotal.getText().toString());
-
-        //dataBse operation
     }
 }

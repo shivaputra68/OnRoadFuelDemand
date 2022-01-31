@@ -79,6 +79,7 @@ public class UserMain extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(UserMain.this, TraceOrder.class);
+                intent.putExtra("customer_name", user.getUsername());
                 startActivity(intent);
             }
         });

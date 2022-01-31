@@ -23,14 +23,14 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
 
         Intent i = getIntent();
         recyclerView = findViewById(R.id.recyclerView_bunkOrder);
-        setOrderDeatils();
+        setOrderDetails();
         BunkOrderAdapter adapter = new BunkOrderAdapter(this, bunkOrder, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void setOrderDeatils() {
-        bunkOrder.add(new BunkOrder("1234","shiva","88848","petrol","bidar",
+    private void setOrderDetails() {
+        bunkOrder.add(new BunkOrder("1234","shiva","88848","petrol","Bidar",
                 "pending","12","100"));
         bunkOrder.add(new BunkOrder("1234","shiva","88848","petrol","bidar",
                 "pending","12","100"));
