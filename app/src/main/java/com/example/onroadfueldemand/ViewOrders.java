@@ -21,7 +21,7 @@ import operations.ViewOrder;
 
 public class ViewOrders extends AppCompatActivity {
 
-    ArrayList<ViewOrder> orderHistory ;
+    ArrayList<ViewOrder> orderHistory = new ArrayList<>();
     RecyclerView recyclerView;
     ArrayList<String> bunkName, fuelType, orderID, amount, orderStatus, orderDate, quantity;
 
@@ -33,30 +33,20 @@ public class ViewOrders extends AppCompatActivity {
         Intent i = getIntent();
         recyclerView = findViewById(R.id.recyclerView_viewOrder);
         setViewOrders();
-        OrderViewAdapter adapter = new OrderViewAdapter(this, orderHistory);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+       // OrderViewAdapter adapter = new OrderViewAdapter(this, orderHistory);
+       // recyclerView.setAdapter(adapter);
+       // recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void setViewOrders() {
-      /*  orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
-                "delivers","12/10/1999","3"));
-        orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
-                "delivers","12/10/1999","3"));
-        orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
-                "delivers","12/10/1999","3"));
-        orderHistory.add(new ViewOrder("Indian Oid","petrol","12345","100",
-                "delivers","12/10/1999","3"));*/
-
         ParseQuery<ParseObject> obj = new ParseQuery<ParseObject>("order");
-        //obj.whereFullText("customer_name", ParseUser.getCurrentUser().getUsername());
         obj.whereEqualTo("customer_name", ParseUser.getCurrentUser().getUsername());
         obj.orderByDescending("updateAt");
         obj.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                orderHistory = new ArrayList<>();
                 for(ParseObject object : objects){
+                    System.out.println("*******************"+object.get("bunk_name").toString()+"****************");
                     orderHistory.add(new ViewOrder(object.get("bunk_name").toString(), object.get("fuel_type").toString(),
                             object.getObjectId().toString(), object.get("total_amount").toString(),object.get("status").toString(),
                             object.get("date").toString(),object.get("quantity").toString()));
@@ -64,9 +54,8 @@ public class ViewOrders extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void add(){
-
+            OrderViewAdapter adapter = new OrderViewAdapter(this, orderHistory);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
