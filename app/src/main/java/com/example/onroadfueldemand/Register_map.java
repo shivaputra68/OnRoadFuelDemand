@@ -32,6 +32,7 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
     Button btn_map_confirm;
     Marker m;
     String name,address,contact,email,username,password;
+    double latitude,longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,8 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
                 }
                m= mMap.addMarker(new MarkerOptions().position(latLng).draggable(true));
                 cordinates=latLng.toString();
+                 latitude=latLng.latitude;
+                 longitude=latLng.longitude;
 
 
 
@@ -118,7 +121,9 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
             user.put("name",name);
             user.put("contact",contact);
             user.put("address",address);
-            user.put("location", cordinates);
+            //user.put("location", cordinates);
+            user.put("latitude",latitude);
+            user.put("longitude", longitude);
             user.setPassword(password);
             user.setEmail(email);
             user.signUpInBackground(new SignUpCallback() {
