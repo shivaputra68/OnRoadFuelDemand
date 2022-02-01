@@ -3,6 +3,7 @@ package com.example.onroadfueldemand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,28 +36,34 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
         recyclerView = findViewById(R.id.adminRecyclerView);
         setBunkRequest();
         OrderFuelRecyclerClickListner recyclerClickListner;
-        AdminBunkAdapter adapter = new AdminBunkAdapter(this, adminOrderVerifies, this);
-        System.out.println("****************************************************");
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     private void setBunkRequest() {
 
         ParseQuery<ParseUser> obj = ParseUser.getQuery();
+        obj.whereNotEqualTo("latitude", null);
+        obj.whereNotEqualTo("longitude", null);
+        obj.whereEqualTo("status", "Pending");
         obj.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
                 for(ParseUser object : objects){
                     System.out.println(object.getUsername());
+                    //adminOrderVerifies.add(new AdminBunkVerify("123","123","123","123","123"));
+                    adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
+                            object.get("address").toString(), "Pending"));
                 }
-                AdminBunkAdapter adapter = new AdminBunkAdapter(this, adminOrderVerifies, this);
-                System.out.println("****************************************************");
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                setAdapter();
             }
         });
+    }
 
+    public void setAdapter() {
+        AdminBunkAdapter adapter = new AdminBunkAdapter(AdminBunkRequest.this, adminOrderVerifies, this);
+        System.out.println("===========================================");
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(AdminBunkRequest.this));
     }
 
     @Override
@@ -73,7 +81,7 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
                 if(e == null){
                     Toast.makeText(AdminBunkRequest.this, "Status Updated", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), "Status not updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Status not updated"+e, Toast.LENGTH_SHORT).show();
                 }
             }
         });
