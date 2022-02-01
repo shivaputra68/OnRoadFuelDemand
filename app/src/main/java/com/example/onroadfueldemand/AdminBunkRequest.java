@@ -3,17 +3,18 @@ package com.example.onroadfueldemand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
 import java.util.ArrayList;
+import java.util.List;
 
 import Interfaces.OrderFuelRecyclerClickListner;
 import operations.AdminBunkAdapter;
@@ -33,7 +34,6 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
         recyclerView = findViewById(R.id.adminRecyclerView);
         setBunkRequest();
         OrderFuelRecyclerClickListner recyclerClickListner;
-        //adminOrderVerifies.add(new AdminBunkVerify("sindol","sindol group", "7353483019", "A, Circle Bidar","Pending"));
         AdminBunkAdapter adapter = new AdminBunkAdapter(this, adminOrderVerifies, this);
         System.out.println("****************************************************");
         recyclerView.setAdapter(adapter);
@@ -42,33 +42,19 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
 
     private void setBunkRequest() {
 
-       /* adminOrderVerifies.add(new AdminBunkVerify("sindol","sindol group", "7353483019", "A, Circle Bidar","Pending"));
-        adminOrderVerifies.add(new AdminBunkVerify("sindol","sindol group", "7353483019", "A, Circle Bidar","Pending"));
-        adminOrderVerifies.add(new AdminBunkVerify("sindol","sindol group", "7353483019", "A, Circle Bidar","Pending"));
-        AdminBunkAdapter adapter = new AdminBunkAdapter(this, adminOrderVerifies, this);
-        System.out.println("****************************************************");
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));*/
-        //ParseQuery<ParseUser> query = ParseUser.getQuery();
-        //ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("user");
-        //ParseUser.getQuery().whereNotEqualTo("latitude", null);
-
-        ParseUser.getQuery().findInBackground(((objects, e) -> {
-            if( e == null){
-                for(int i=0;i<objects.size();i++){
-                    adminOrderVerifies.add(new AdminBunkVerify(objects.get(i).getUsername(), objects.get(i).get("name").toString(),
-                            objects.get(i).get("contact").toString(),objects.get(i).get("address").toString(),"Pending"));
+        ParseQuery<ParseUser> obj = ParseUser.getQuery();
+        obj.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                for(ParseUser object : objects){
+                    System.out.println(object.getUsername());
                 }
                 AdminBunkAdapter adapter = new AdminBunkAdapter(this, adminOrderVerifies, this);
                 System.out.println("****************************************************");
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            }else{
-
             }
-        }));
-
-
+        });
 
     }
 
