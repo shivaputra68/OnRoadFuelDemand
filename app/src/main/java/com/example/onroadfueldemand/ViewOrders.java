@@ -2,12 +2,16 @@ package com.example.onroadfueldemand;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
 import java.util.ArrayList;
+
 import operations.OrderViewAdapter;
 import operations.ViewOrder;
 
@@ -15,6 +19,7 @@ public class ViewOrders extends AppCompatActivity {
 
     ArrayList<ViewOrder> orderHistory = new ArrayList<>();
     RecyclerView recyclerView;
+    ArrayList<String> bunkName, fuelType, orderID, amount, orderStatus, orderDate, quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +29,16 @@ public class ViewOrders extends AppCompatActivity {
         Intent i = getIntent();
         recyclerView = findViewById(R.id.recyclerView_viewOrder);
         setViewOrders();
-
+       // OrderViewAdapter adapter = new OrderViewAdapter(this, orderHistory);
+       // recyclerView.setAdapter(adapter);
+       // recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void setViewOrders() {
 
         ParseQuery<ParseObject> obj = ParseQuery.getQuery("order");
         obj.findInBackground(((objects, e) -> {
+
             for(int i=0;i< objects.size();i++){
                 System.out.println("*******************"+objects.get(i).get("bunk_name").toString()+"****************");
                 orderHistory.add(new ViewOrder(objects.get(i).get("bunk_name").toString(), objects.get(i).get("fuel_type").toString(),
