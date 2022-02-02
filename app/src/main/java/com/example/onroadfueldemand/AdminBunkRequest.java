@@ -3,21 +3,17 @@ package com.example.onroadfueldemand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Interfaces.OrderFuelRecyclerClickListner;
 import operations.AdminBunkAdapter;
 import operations.AdminBunkVerify;
@@ -44,7 +40,6 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
         ParseQuery<ParseUser> obj = ParseUser.getQuery();
         obj.whereNotEqualTo("latitude", null);
         obj.whereNotEqualTo("longitude", null);
-        obj.whereEqualTo("status", "Pending");
         obj.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
@@ -61,7 +56,6 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
 
     public void setAdapter() {
         AdminBunkAdapter adapter = new AdminBunkAdapter(AdminBunkRequest.this, adminOrderVerifies, this);
-        System.out.println("===========================================");
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(AdminBunkRequest.this));
     }

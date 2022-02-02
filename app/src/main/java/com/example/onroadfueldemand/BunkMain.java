@@ -58,7 +58,7 @@ public class BunkMain extends AppCompatActivity {
                     if (e == null) {
                         Toast.makeText(getApplicationContext(), "Logged out Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(BunkMain.this, Login.class);
-                        intent.putExtra("usertype", "ADMIN");
+                        intent.putExtra("key", "bunk");
                         startActivity(intent);
                     }
                 });
