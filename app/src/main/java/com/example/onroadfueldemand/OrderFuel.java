@@ -40,8 +40,8 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
 
     ArrayList<Fuel> fuel = new ArrayList<>();
     RecyclerView recyclerView;
-    ArrayList<String> bunkName, fuelType, fuelPrice, bunkDistance, bunkContact;
-    LocationManager locationManager;
+    ArrayList<String> bunkName, fuelType, petrol_price,diesel_price, bunkDistance, bunkContact;
+
     double latitude,longitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,29 +97,28 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
     //Values adding to the bean class Fuel
     private void setFuelStations(){
        // addValues();
-        fuel.add( new Fuel("Indian Oil","petrol","70","10","12345"));
+        /*fuel.add( new Fuel("Indian Oil","petrol","70","10","12345"));
         fuel.add( new Fuel("HP GAS","petrol","80","18","159486"));
         fuel.add( new Fuel("Indian Oil","petrol","70","10","154896"));
         fuel.add( new Fuel("HP GAS","petrol","80","18","125436"));
         fuel.add( new Fuel("Indian Oil","petrol","70","10","584967"));
         fuel.add( new Fuel("HP GAS","petrol","80","18","15846"));
         fuel.add( new Fuel("Indian Oil","petrol","70","10","154896"));
-        fuel.add( new Fuel("HP GAS","petrol","80","18","225846"));
+        fuel.add( new Fuel("HP GAS","petrol","80","18","225846"));*/
     }
 
     //Values fetching from the database and adding to the Strings of array
     private void addValues(){
         bunkName = new ArrayList<>();
         fuelType = new ArrayList<>();
-        fuelPrice = new ArrayList<>();
+        petrol_price = new ArrayList<>();
+        diesel_price=new ArrayList<>();
         bunkDistance = new ArrayList<>();
         bunkContact = new ArrayList<>();
 
         //code to fetch data from database
         System.out.println("fetching the data");
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereGreaterThan("latitude", 0.0);
-        query.whereGreaterThan("longitude", 0.0);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Fuel");
         query.findInBackground(((objects, e) -> {
             if(e == null){
                 for(int i=0;i<objects.size();i++){
@@ -128,7 +127,11 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
                     if(d<10.00) {
                         System.out.println(objects.get(i).get("latitude") + " and " + objects.get(i).get("longitude"));
                         bunkName.add(objects.get(i).get("name").toString());
-                        fuelPrice.add(Double.toString(d));
+                        bunkDistance.add(Double.toString(d));
+                        bunkContact.add(objects.get(i).get("contact").toString());
+                        petrol_price.add(objects.get(i).get("petrol_price").toString());
+                        diesel_price.add(objects.get(i).get("diesel_price").toString());
+                        fuelType.add(objects.get(i).get("fuel_type").toString());
                     }
                 }
 
@@ -149,7 +152,7 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
         Intent intent = new Intent(OrderFuel.this, OrderDetails.class);
         intent.putExtra("bunkName",fuel.get(position).getBunkName());
         intent.putExtra("fuelType", fuel.get(position).getFuelType());
-        intent.putExtra("fuelPrice", fuel.get(position).getPrice());
+       // intent.putExtra("fuelPrice", fuel.get(position).getPrice());
         intent.putExtra("bunkContact", fuel.get(position).getBunkContact());
 
         startActivity(intent);

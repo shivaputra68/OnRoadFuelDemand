@@ -47,7 +47,7 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
                     System.out.println(object.getUsername());
                     //adminOrderVerifies.add(new AdminBunkVerify("123","123","123","123","123"));
                     adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
-                            object.get("address").toString(), "Pending"));
+                            object.get("address").toString(), "Pending",object.get("latitude").toString(),object.get("longitude").toString()));
                 }
                 setAdapter();
             }
@@ -69,6 +69,8 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
         object.put("contact", adminOrderVerifies.get(position).getBunkContact());
         object.put("address", adminOrderVerifies.get(position).getBunkAddress());
         object.put("status", adminOrderVerifies.get(position).getStatus());
+        object.put("latitude", adminOrderVerifies.get(position).getLatitude());
+        object.put("longitude", adminOrderVerifies.get(position).getLongitude());
         object.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {

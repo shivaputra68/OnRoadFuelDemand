@@ -3,17 +3,24 @@ package operations;
 public class Fuel {
 
     String bunkName,fuelType;
-    String price;
+    String petrol_price,diesel_price;
     String distance,bunkContact;
-    boolean fuelAvailability;
 
-    public Fuel(String bunkName, String fuelType, String price, String distance, String bunkContact) {
+    public Fuel(String bunkName, String fuelType, String petrol_price, String diesel_price, String distance, String bunkContact) {
         this.bunkName = bunkName;
         this.fuelType = fuelType;
-        this.price = price;
+        this.petrol_price = petrol_price;
+        this.diesel_price = diesel_price;
         this.distance = distance;
         this.bunkContact = bunkContact;
-        //this.fuelAvailability = fuelAvailability;
+    }
+
+    public String getPetrol_price() {
+        return petrol_price;
+    }
+
+    public String getDiesel_price() {
+        return diesel_price;
     }
 
     public String getBunkContact() {
@@ -27,15 +34,12 @@ public class Fuel {
         return fuelType;
     }
 
-    public String getPrice() {
-        return price;
-    }
+
 
     public String getDistance() {
         return distance;
     }
 
-    public boolean isFuelAvailability() {
-        return fuelAvailability;
+
     }
-}
+

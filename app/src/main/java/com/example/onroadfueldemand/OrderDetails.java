@@ -71,7 +71,7 @@ public class OrderDetails extends AppCompatActivity {
                 qty = Integer.parseInt(OrderDetailsFuelQuantity.getText().toString());
                 float price = Float.parseFloat(OrderDetailsFuelPrice.getText().toString());
 
-                if(qty >= 0){
+                if(qty >= 0 && OrderDetailsFuelType.getText().toString().equalsIgnoreCase("")){
                     result = qty * price;
                 }else{
                     qty = 0;
