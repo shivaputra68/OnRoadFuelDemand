@@ -7,31 +7,13 @@
     android:background="#FFFFFF"
     tools:context=".activity_splash">
 
-    <TextView
-        android:id="@+id/splash_text"
-        android:layout_width="399dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center_horizontal"
-        android:text="FUEL DROP"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="34sp"
-        android:textStyle="bold|italic" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="200dp"
-        app:srcCompat="@drawable/splash_img" />
+        app:srcCompat="@drawable/splash" />
 
 </RelativeLayout>
