@@ -30,7 +30,7 @@ public class OrderDetails extends AppCompatActivity {
     Button placeOrder;
     AutoCompleteTextView OrderDetailsFuelType;
     TextView OrderDetailsErrorMessage;
-    String type;
+    String type="";
     ArrayAdapter<String> adapter;
     private static String[] fuelType;
 
@@ -55,9 +55,8 @@ public class OrderDetails extends AppCompatActivity {
 
         //Intent values from order page
         OrderDetailsBunkName.setText(intent.getStringExtra("bunkName"));
-       // OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
-        OrderDetailsFuelPrice.setText(intent.getStringExtra("fuelPrice"));
         OrderDetailsBunkContact.setText(intent.getStringExtra("bunkContact"));
+
 
         //for dropdown
         Resources res = getResources();
@@ -70,6 +69,19 @@ public class OrderDetails extends AppCompatActivity {
                 type = parent.getItemAtPosition(position).toString();
             }
         });
+        if(type.equalsIgnoreCase("petrol"))
+        {
+            OrderDetailsFuelPrice.setText(intent.getStringExtra("petrol_price"));
+        }
+        else if(type.equalsIgnoreCase("diesel"))
+        {
+            OrderDetailsFuelPrice.setText(intent.getStringExtra("diesel_price"));
+        }
+        else
+        {
+            OrderDetailsFuelPrice.setText("0.0");
+            OrderDetailsErrorMessage.setText("Please Select Type Of The fuel");
+        }
 
 
         //fetching current user name and contact
@@ -92,7 +104,7 @@ public class OrderDetails extends AppCompatActivity {
                 qty = Integer.parseInt(OrderDetailsFuelQuantity.getText().toString());
                 float price = Float.parseFloat(OrderDetailsFuelPrice.getText().toString());
 
-                if(qty >= 0 && OrderDetailsFuelType.getText().toString().equalsIgnoreCase("")){
+                if(qty >= 0 ){
                     result = qty * price;
                 }else{
                     qty = 0;

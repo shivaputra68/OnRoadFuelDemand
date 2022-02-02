@@ -49,10 +49,8 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
         setContentView(R.layout.activity_order_fuel);
 
         recyclerView = findViewById(R.id.recyclerView);
-        setFuelStations();
-        OrderAdapter adapter = new OrderAdapter(this, fuel, this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 100);
@@ -96,9 +94,19 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
 
     //Values adding to the bean class Fuel
     private void setFuelStations(){
-       // addValues();
+
+        for (int i = 0; i < bunkName.size(); i++) {
+            fuel.add(new Fuel(bunkName.get(i),fuelType.get(i),petrol_price.get(i),diesel_price.get(i),bunkDistance.get(i),bunkContact.get(i)));
+            //fuel.add( new Fuel("HP GAS","petrol","80","56","15","29878979"));
+            System.out.println(bunkDistance.get(i));
+
+        }
+        OrderAdapter adapter = new OrderAdapter(this, fuel, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         /*fuel.add( new Fuel("Indian Oil","petrol","70","10","12345"));
-        fuel.add( new Fuel("HP GAS","petrol","80","18","159486"));
+
         fuel.add( new Fuel("Indian Oil","petrol","70","10","154896"));
         fuel.add( new Fuel("HP GAS","petrol","80","18","125436"));
         fuel.add( new Fuel("Indian Oil","petrol","70","10","584967"));
@@ -123,16 +131,19 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
             if(e == null){
                 for(int i=0;i<objects.size();i++){
                     //calculating the distance by fetching from database
-                    double d=getDistance(latitude, (Double) objects.get(i).get("latitude"), longitude, (Double) objects.get(i).get("longitude"));
-                    if(d<10.00) {
-                        System.out.println(objects.get(i).get("latitude") + " and " + objects.get(i).get("longitude"));
-                        bunkName.add(objects.get(i).get("name").toString());
-                        bunkDistance.add(Double.toString(d));
-                        bunkContact.add(objects.get(i).get("contact").toString());
-                        petrol_price.add(objects.get(i).get("petrol_price").toString());
-                        diesel_price.add(objects.get(i).get("diesel_price").toString());
-                        fuelType.add(objects.get(i).get("fuel_type").toString());
-                    }
+                    System.out.println(getDistance(latitude, Double.parseDouble(objects.get(i).get("latitude").toString()), longitude, Double.parseDouble(objects.get(i).get("longitude").toString()) ));
+                    double d=getDistance(latitude, Double.parseDouble(objects.get(i).get("latitude").toString()), longitude, Double.parseDouble(objects.get(i).get("longitude").toString()) );
+
+                       System.out.println(objects.get(i).get("latitude") + " and " + objects.get(i).get("longitude"));
+                       bunkName.add(objects.get(i).get("bunk_name").toString());
+                       bunkDistance.add(Double.toString(d));
+                       bunkContact.add(objects.get(i).get("contact").toString());
+                       petrol_price.add(objects.get(i).get("petrol_price").toString());
+                       diesel_price.add(objects.get(i).get("diesel_price").toString());
+                       fuelType.add(objects.get(i).get("fuel_type").toString());
+                        System.out.println(objects.get(i).get("fuel_type").toString());
+                        System.out.println(Double.toString(d));
+
                 }
 
             }
@@ -140,6 +151,8 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
             {
                 System.out.println(e.getMessage());
             }
+
+            setFuelStations();
         }));
 
     }
@@ -152,7 +165,8 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
         Intent intent = new Intent(OrderFuel.this, OrderDetails.class);
         intent.putExtra("bunkName",fuel.get(position).getBunkName());
         intent.putExtra("fuelType", fuel.get(position).getFuelType());
-       // intent.putExtra("fuelPrice", fuel.get(position).getPrice());
+        intent.putExtra("petrol_price", fuel.get(position).getPetrol_price());
+        intent.putExtra("diesel_price",fuel.get(position).getDiesel_price());
         intent.putExtra("bunkContact", fuel.get(position).getBunkContact());
 
         startActivity(intent);
