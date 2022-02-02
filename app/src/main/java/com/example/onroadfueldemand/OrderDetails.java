@@ -2,10 +2,14 @@ package com.example.onroadfueldemand;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,9 +26,13 @@ import java.util.Date;
 public class OrderDetails extends AppCompatActivity {
 
     EditText OrderDetailsAddress, OrderDetailsBunkName,OrderDetailsBunkContact,OrderDetailsCustomerName,OrderDetailsCustomerContact;
-    EditText OrderDetailsFuelType,OrderDetailsFuelPrice,OrderDetailsFuelQuantity,OrderDetailsTotal;
+    EditText OrderDetailsFuelPrice,OrderDetailsFuelQuantity,OrderDetailsTotal;
     Button placeOrder;
+    AutoCompleteTextView OrderDetailsFuelType;
     TextView OrderDetailsErrorMessage;
+    String type;
+    ArrayAdapter<String> adapter;
+    private static String[] fuelType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +55,22 @@ public class OrderDetails extends AppCompatActivity {
 
         //Intent values from order page
         OrderDetailsBunkName.setText(intent.getStringExtra("bunkName"));
-        OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
+       // OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
         OrderDetailsFuelPrice.setText(intent.getStringExtra("fuelPrice"));
         OrderDetailsBunkContact.setText(intent.getStringExtra("bunkContact"));
+
+        //for dropdown
+        Resources res = getResources();
+        fuelType = res.getStringArray(R.array.orderDetailsFuelType);
+        adapter = new ArrayAdapter<>(this,R.layout.dropdown_item,fuelType);
+        OrderDetailsFuelType.setAdapter(adapter);
+        OrderDetailsFuelType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                type = parent.getItemAtPosition(position).toString();
+            }
+        });
+
 
         //fetching current user name and contact
         ParseUser user = ParseUser.getCurrentUser();

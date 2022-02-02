@@ -2,17 +2,13 @@ package com.example.onroadfueldemand;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
-
 import operations.BunkHistoryAdapter;
 import operations.BunkHistoryModel;
 
@@ -42,7 +38,6 @@ public class BunkHistory extends AppCompatActivity {
                         objects.get(i).get("fuel_type").toString(), objects.get(i).get("quantity").toString(), objects.get(i).get("total_amount").toString(),
                         objects.get(i).get("status").toString(), objects.get(i).get("date").toString()));
             }
-
             BunkHistoryAdapter adapter = new BunkHistoryAdapter(this, list);
             recyclerViewBunkHistory.setAdapter(adapter);
             recyclerViewBunkHistory.setLayoutManager(new LinearLayoutManager(this));

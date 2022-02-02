@@ -124,5 +124,11 @@
         <item>Acccept</item>
         <item>Reject</item>
     </string-array>
+
+    <!-- order Details fuelType -->
+    <string-array name="orderDetailsFuelType">
+        <item>Petrol</item>
+        <item>Diesel</item>
+    </string-array>
     <string name="title_activity_maps_user">MapsActivityUser</string>
 </resources>
