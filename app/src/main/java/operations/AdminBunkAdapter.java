@@ -51,6 +51,7 @@ public class AdminBunkAdapter extends RecyclerView.Adapter<AdminBunkAdapter.Admi
         holder.bunkContact.setText("Contact : "+adminBunkVerifies.get(position).getBunkContact());
         holder.ownerName.setText("Owner : "+adminBunkVerifies.get(position).getOwnerName());
         holder.bunkAddress.setText("Address : "+adminBunkVerifies.get(position).getBunkAddress());
+        holder.status.setText("Status : "+adminBunkVerifies.get(position).getStatus());
         holder.status.setAdapter(adapter);
         holder.status.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

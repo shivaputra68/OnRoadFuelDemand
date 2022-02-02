@@ -57,8 +57,10 @@ public class BunkOrderAdapter extends RecyclerView.Adapter<BunkOrderAdapter.Bunk
             public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {
                 String value = parent.getItemAtPosition(position1).toString();
                 bunkOrder.get(pos).setBunkStatus(value);
+                System.out.println(bunkOrder.get(pos).getBunkStatus());
             }
         });
+
     }
 
     @Override

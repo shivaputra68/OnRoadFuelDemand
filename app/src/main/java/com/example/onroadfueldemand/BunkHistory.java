@@ -35,11 +35,10 @@ public class BunkHistory extends AppCompatActivity {
     private void setBunkHistory() {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
-        query.whereEqualTo("bunk_name", ParseUser.getCurrentUser().getUsername());
+        query.whereEqualTo("bunk_name", ParseUser.getCurrentUser().get("name"));
         query.findInBackground(((objects, e) -> {
-
             for(int i=0;i<objects.size();i++){
-                list.add(new BunkHistoryModel(objects.get(i).getObjectId().toString(), objects.get(i).get("customer_name").toString(),
+                list.add(new BunkHistoryModel(objects.get(i).getObjectId(), objects.get(i).get("customer_name").toString(),
                         objects.get(i).get("fuel_type").toString(), objects.get(i).get("quantity").toString(), objects.get(i).get("total_amount").toString(),
                         objects.get(i).get("status").toString(), objects.get(i).get("date").toString()));
             }

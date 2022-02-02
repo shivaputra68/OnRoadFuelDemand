@@ -147,12 +147,4 @@ public class Login extends AppCompatActivity {
                 break;
         }
     }
-
-    //On resume code
-    @Override
-    protected  void onResume() {
-        super.onResume();
-        Intent i = getIntent();
-        heading.setText(i.getStringExtra("usertype"));
-    }
 }

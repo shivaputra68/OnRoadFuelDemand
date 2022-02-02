@@ -57,7 +57,7 @@ public class AdminMain extends AppCompatActivity {
                     if (e == null) {
                         Toast.makeText(getApplicationContext(), "Logged out Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AdminMain.this, Login.class);
-                        intent.putExtra("key","ADMIN");
+                        intent.putExtra("key","admin");
                         startActivity(intent);
                     }
                 });

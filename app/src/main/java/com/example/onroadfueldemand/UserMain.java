@@ -57,7 +57,7 @@ public class UserMain extends AppCompatActivity {
                     if (e == null) {
                         Toast.makeText(getApplicationContext(), "Logged out Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(UserMain.this, Login.class);
-                        intent.putExtra("usertype", "user");
+                        intent.putExtra("key", "user");
                         startActivity(intent);
                     }
                 });
