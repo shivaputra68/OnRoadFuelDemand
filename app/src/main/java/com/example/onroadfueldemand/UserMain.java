@@ -31,7 +31,7 @@ public class UserMain extends AppCompatActivity {
 
         ParseUser user = ParseUser.getCurrentUser();
         heading.setText("HI, "+user.getUsername());
-        Intent intent = getIntent();
+
 
         //profile action code
         profile.setOnClickListener(new View.OnClickListener() {
