@@ -56,6 +56,7 @@ public class TraceOrder extends AppCompatActivity {
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
                 query.whereNotEqualTo("status", "Canceled");
+                query.addDescendingOrder("updateAt");
                 query.whereEqualTo("customer_name" , ParseUser.getCurrentUser().getUsername());
                 query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
