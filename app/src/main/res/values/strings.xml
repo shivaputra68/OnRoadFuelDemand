@@ -124,4 +124,5 @@
         <item>Acccept</item>
         <item>Reject</item>
     </string-array>
+    <string name="title_activity_maps_user">MapsActivityUser</string>
 </resources>

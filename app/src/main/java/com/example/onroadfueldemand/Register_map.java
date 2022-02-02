@@ -53,7 +53,7 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-        //intent from map to register page
+        //intent from map from register page
         Intent intent = getIntent();
          name=intent.getStringExtra("name");
          address=intent.getStringExtra("address");

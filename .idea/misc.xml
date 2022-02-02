@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/activity_login_user.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_maps_user.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_order_details.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_order_fuel.xml" value="0.2515625" />
         <entry key="app/src/main/res/layout/activity_profile_view.xml" value="0.19583333333333333" />
@@ -44,6 +45,7 @@
         <entry key="app/src/main/res/layout/bunk_list1.xml" value="0.34103260869565216" />
         <entry key="app/src/main/res/layout/bunk_order.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_maps_user.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/layout/fragment_view_orders.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/user_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/view_orders.xml" value="0.33" />

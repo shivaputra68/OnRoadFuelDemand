@@ -69,7 +69,7 @@ public class UserMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent  = new Intent(UserMain.this, OrderFuel.class);
+                Intent intent  = new Intent(UserMain.this, MapsActivityUser.class);
                 startActivity(intent);
             }
         });

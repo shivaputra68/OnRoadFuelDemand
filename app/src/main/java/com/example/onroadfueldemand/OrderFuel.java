@@ -20,13 +20,23 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 import java.util.ArrayList;
 
 import Interfaces.OrderFuelRecyclerClickListner;
+import operations.BunkOrder;
+import operations.BunkOrderAdapter;
 import operations.Fuel;
 import operations.OrderAdapter;
+import operations.OrderViewAdapter;
+import operations.ViewOrder;
 
-public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerClickListner, LocationListener {
+public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerClickListner {
 
     ArrayList<Fuel> fuel = new ArrayList<>();
     RecyclerView recyclerView;
@@ -49,19 +59,19 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
         }
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED)
             {
-                getLocation();
 
-                System.out.println(latitude+" on create"+longitude);
         }
-
-
+            Intent intent=getIntent();
+            latitude=intent.getDoubleExtra("latitude", 0.0);
+            longitude=intent.getDoubleExtra("longitude", 0.0);
+            //System.out.println(latitude+" and "+longitude);
+            //System.out.println(getDistance(latitude, 13.01865337705787, longitude, 77.49290078248673));
+            addValues();
     }
 
     private double getDistance(double lat1, double lat2, double lon1, double lon2)
     {
-        // The math module contains a function
-        // named toRadians which converts from
-        // degrees to radians.
+
         lon1 = Math.toRadians(lon1);
         lon2 = Math.toRadians(lon2);
         lat1 = Math.toRadians(lat1);
@@ -76,11 +86,9 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
 
         double c = 2 * Math.asin(Math.sqrt(a));
 
-        // Radius of earth in kilometers. Use 3956
-        // for miles
-        double r = 6371;
 
-        // calculate the result
+        double r = 3956;
+
         return(c * r);
     }
 
@@ -108,6 +116,28 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
         bunkContact = new ArrayList<>();
 
         //code to fetch data from database
+        System.out.println("fetching the data");
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereGreaterThan("latitude", 0.0);
+        query.whereGreaterThan("longitude", 0.0);
+        query.findInBackground(((objects, e) -> {
+            if(e == null){
+                for(int i=0;i<objects.size();i++){
+                    //calculating the distance by fetching from database
+                    double d=getDistance(latitude, (Double) objects.get(i).get("latitude"), longitude, (Double) objects.get(i).get("longitude"));
+                    if(d<10.00) {
+                        System.out.println(objects.get(i).get("latitude") + " and " + objects.get(i).get("longitude"));
+                        bunkName.add(objects.get(i).get("name").toString());
+                        fuelPrice.add(Double.toString(d));
+                    }
+                }
+
+            }
+            else
+            {
+                System.out.println(e.getMessage());
+            }
+        }));
 
     }
 
@@ -126,31 +156,5 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
 
     }
 
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-        Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
-        latitude=location.getLatitude();
-        longitude=location.getLongitude();
-        System.out.println(latitude+"on location changed "+longitude);
-        System.out.println(getDistance(latitude,12.952104,longitude, 77.573527));
 
-
-
-    }
-
-    @SuppressLint("MissingPermission")
-    private void getLocation() {
-
-        try {
-            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,5,this);
-            Log.d(TAG, "getLocation: hello "+locationManager);
-            System.out.println(latitude+" getlocation"+longitude);
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 }

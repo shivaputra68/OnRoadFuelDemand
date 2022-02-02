@@ -28,7 +28,7 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
 
         Intent i = getIntent();
         recyclerView = findViewById(R.id.recyclerView_bunkOrder);
-        //setOrderDetails();
+        setOrderDetails();
         bunkOrder.add(new BunkOrder("1234","shiva1999","8884859355","petrol","bidar","pending",
                 "2","100"));
         bunkOrder.add(new BunkOrder("1234","shiva1999","8884859355","petrol","bidar","pending",
@@ -44,6 +44,8 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
         ParseUser user = ParseUser.getCurrentUser();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
         query.whereEqualTo("bunk_name", user.get("name").toString());
+        System.out.println("printing bunk name from user table");
+        System.out.println(user.get("name"));
         query.whereNotEqualTo("status", "Delivered");
         query.whereEqualTo("bunk_contact", user.get("contact").toString());
         query.findInBackground(((objects, e) -> {
