@@ -26,6 +26,7 @@ public class Fuel {
     public String getBunkContact() {
         return bunkContact;
     }
+
     public String getBunkName() {
         return bunkName;
     }
@@ -34,12 +35,9 @@ public class Fuel {
         return fuelType;
     }
 
-
-
     public String getDistance() {
         return distance;
     }
-
 
     }
 

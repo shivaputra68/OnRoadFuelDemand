@@ -33,7 +33,7 @@
             android:layout_width="100dp"
             android:layout_height="180dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/orderHeading"
             android:src="@drawable/icon_fuel"
             app:layout_constraintStart_toStartOf="parent"

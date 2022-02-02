@@ -30,7 +30,7 @@ public class OrderDetails extends AppCompatActivity {
     Button placeOrder;
     AutoCompleteTextView OrderDetailsFuelType;
     TextView OrderDetailsErrorMessage;
-    String type="";
+    String type;
     ArrayAdapter<String> adapter;
     private static String[] fuelType;
 
@@ -53,35 +53,34 @@ public class OrderDetails extends AppCompatActivity {
         OrderDetailsErrorMessage = findViewById(R.id.OrderDetailsErrorMessage);
         placeOrder = findViewById(R.id.orderDetailsPlaceOrder);
 
+        //for dropdown
+
+
         //Intent values from order page
         OrderDetailsBunkName.setText(intent.getStringExtra("bunkName"));
+       // OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
+        OrderDetailsFuelPrice.setText(intent.getStringExtra("fuelPrice"));
         OrderDetailsBunkContact.setText(intent.getStringExtra("bunkContact"));
+        OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
+
+        if(OrderDetailsFuelType.getText().toString().equalsIgnoreCase("Petrol & Diesel")){
+
+            Resources res = getResources();
+            fuelType = res.getStringArray(R.array.orderDetailsFuelType);
+            adapter = new ArrayAdapter<>(this,R.layout.dropdown_item,fuelType);
+            OrderDetailsFuelType.setAdapter(adapter);
+            OrderDetailsFuelType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    type = parent.getItemAtPosition(position).toString();
+                    OrderDetailsFuelType.setText(type);
+                }
+            });
+        }else{
+            
+        }
 
 
-        //for dropdown
-        Resources res = getResources();
-        fuelType = res.getStringArray(R.array.orderDetailsFuelType);
-        adapter = new ArrayAdapter<>(this,R.layout.dropdown_item,fuelType);
-        OrderDetailsFuelType.setAdapter(adapter);
-        OrderDetailsFuelType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                type = parent.getItemAtPosition(position).toString();
-            }
-        });
-        if(type.equalsIgnoreCase("petrol"))
-        {
-            OrderDetailsFuelPrice.setText(intent.getStringExtra("petrol_price"));
-        }
-        else if(type.equalsIgnoreCase("diesel"))
-        {
-            OrderDetailsFuelPrice.setText(intent.getStringExtra("diesel_price"));
-        }
-        else
-        {
-            OrderDetailsFuelPrice.setText("0.0");
-            OrderDetailsErrorMessage.setText("Please Select Type Of The fuel");
-        }
 
 
         //fetching current user name and contact
