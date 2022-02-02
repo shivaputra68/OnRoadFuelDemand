@@ -47,6 +47,7 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
         query.whereEqualTo("bunk_name", user.get("name").toString());
         query.whereEqualTo("bunk_contact", user.get("contact").toString());
         query.whereNotEqualTo("status", "Delivered");
+        query.whereNotEqualTo("status", "Canceled");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -65,7 +66,6 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
     public void adapters(){
         BunkOrderAdapter adapter = new BunkOrderAdapter(this, bunkOrder, this);
         recyclerView.setAdapter(adapter);
-        System.out.println("***********************************");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
