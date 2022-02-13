@@ -50,6 +50,7 @@ public class BunkOrderAdapter extends RecyclerView.Adapter<BunkOrderAdapter.Bunk
         holder.quantity.setText("Quantity : "+bunkOrder.get(position).getQuantity());
         holder.amount.setText("Amount : "+bunkOrder.get(position).getAmount());
         holder.location.setText("Location : "+bunkOrder.get(position).getAddress());
+        holder.autoCompleteTextView.setText(bunkOrder.get(position).getBunkStatus());
         //setting value for autoCompleteTextView from strings and assigning value to the bunkOrder attribute(status)
         holder.autoCompleteTextView.setAdapter(adapter1);
         holder.autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,7 +98,6 @@ public class BunkOrderAdapter extends RecyclerView.Adapter<BunkOrderAdapter.Bunk
                         int pos = getAdapterPosition();
                         if(pos != RecyclerView.NO_POSITION){
                             recyclerClickListner.onItemClick(pos);
-
                         }
                     }
                 }
