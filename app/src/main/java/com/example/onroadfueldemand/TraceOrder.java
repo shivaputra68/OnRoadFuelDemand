@@ -40,10 +40,11 @@ public class TraceOrder extends AppCompatActivity {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
         query.whereEqualTo("customer_name", ParseUser.getCurrentUser().getUsername());
-        query.whereNotEqualTo("status", "Delivered");
+        query.whereNotEqualTo("status", "Canceled");
         query.addAscendingOrder("updateAt");
         query.findInBackground(((objects, e) -> {
             if(e == null){
+
                 bunkName.setText("Name : "+objects.get(0).get("bunk_name").toString());
                 fuelType.setText("Fuel : "+objects.get(0).get("fuel_type").toString());
                 status.setText("Status : "+objects.get(0).get("status").toString());
@@ -65,6 +66,7 @@ public class TraceOrder extends AppCompatActivity {
                         if(e == null){
                             for(ParseObject object : objects){
                                 objectID = object.getObjectId();
+                                System.out.println("object id"+object.getObjectId());
                             }
                             ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
                             query.getInBackground(objectID, new GetCallback<ParseObject>() {

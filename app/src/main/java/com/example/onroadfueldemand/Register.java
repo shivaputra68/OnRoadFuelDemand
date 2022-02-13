@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ public class Register<protecetd> extends AppCompatActivity {
     EditText contact,email,username,password,conf_password,name,address;
     Button signup;
     LinearLayout layout;
-    String lat_long;
+    CheckBox checkBox;
 
 
     @Override
@@ -49,8 +50,20 @@ public class Register<protecetd> extends AppCompatActivity {
                 signup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Register(name.getText().toString(), address.getText().toString(), contact.getText().toString()
-                                , email.getText().toString(), username.getText().toString(), password.getText().toString());
+                        if(password.getText().toString().isEmpty()||!password.getText().toString().equals(conf_password.getText().toString()))
+                        {
+                            Toast.makeText(Register.this, "Password Mismatch", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if(!checkBox.isChecked())
+                        {
+                            Toast.makeText(Register.this, "Please agree to the terms and condition", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Register(name.getText().toString(), address.getText().toString(), contact.getText().toString()
+                                    , email.getText().toString(), username.getText().toString(), password.getText().toString());
+                        }
+
                     }
                 });
                 break;

@@ -50,6 +50,8 @@
         <entry key="app/src/main/res/layout/user_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/view_orders.xml" value="0.33" />
         <entry key="app/src/main/res/menu/menu_bunk_main.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.36" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.36" />
       </map>
     </option>
   </component>

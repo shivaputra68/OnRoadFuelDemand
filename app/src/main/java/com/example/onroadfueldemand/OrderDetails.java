@@ -59,7 +59,7 @@ public class OrderDetails extends AppCompatActivity {
         //Intent values from order page
         OrderDetailsBunkName.setText(intent.getStringExtra("bunkName"));
        // OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
-        OrderDetailsFuelPrice.setText(intent.getStringExtra("fuelPrice"));
+        //OrderDetailsFuelPrice.setText(intent.getStringExtra("fuelPrice"));
         OrderDetailsBunkContact.setText(intent.getStringExtra("bunkContact"));
         OrderDetailsFuelType.setText(intent.getStringExtra("fuelType"));
 
@@ -74,11 +74,38 @@ public class OrderDetails extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     type = parent.getItemAtPosition(position).toString();
                     OrderDetailsFuelType.setText(type);
+                    if (OrderDetailsFuelType.getText().toString().equalsIgnoreCase("petrol")) {
+                        OrderDetailsFuelPrice.setText(intent.getStringExtra("petrol_price"));
+                    }
+                    else if(OrderDetailsFuelType.getText().toString().equalsIgnoreCase("diesel"))
+                    {
+                        OrderDetailsFuelPrice.setText(intent.getStringExtra("diesel_price"));
+                    }
+                    else
+                    {
+                        OrderDetailsFuelPrice.setText("0.0");
+
+                    }
+
                 }
             });
-        }else{
-            
+        }else
+        {
+            if (OrderDetailsFuelType.getText().toString().equalsIgnoreCase("petrol")) {
+                OrderDetailsFuelPrice.setText(intent.getStringExtra("petrol_price"));
+            }
+            else if(OrderDetailsFuelType.getText().toString().equalsIgnoreCase("diesel"))
+            {
+                OrderDetailsFuelPrice.setText(intent.getStringExtra("diesel_price"));
+            }
+            else
+            {
+                OrderDetailsFuelPrice.setText("0.0");
+
+            }
         }
+
+
 
 
 
@@ -100,7 +127,15 @@ public class OrderDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                qty = Integer.parseInt(OrderDetailsFuelQuantity.getText().toString());
+                if(OrderDetailsFuelQuantity.getText().toString().isEmpty())
+                {
+                    qty=0;
+                }
+                else
+                {
+                    qty = Integer.parseInt(OrderDetailsFuelQuantity.getText().toString());
+
+                }
                 float price = Float.parseFloat(OrderDetailsFuelPrice.getText().toString());
 
                 if(qty >= 0 ){
