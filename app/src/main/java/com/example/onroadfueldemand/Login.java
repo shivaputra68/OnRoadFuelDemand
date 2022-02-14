@@ -59,7 +59,7 @@ public class Login extends AppCompatActivity {
                         progress.show();
                         progress.setMessage("Please wait....");
                         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
+                       /* ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
                             progress.dismiss();
                             if (parseUser != null) {
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
@@ -69,7 +69,8 @@ public class Login extends AppCompatActivity {
                                 ParseUser.logOut();
                                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                             }
-                        });
+                        });*/
+
                     }
                 });
                 break;
@@ -87,14 +88,18 @@ public class Login extends AppCompatActivity {
                         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                         ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
                             progress.dismiss();
-                            if (parseUser != null) {
-                                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                Intent userIntent = new Intent(Login.this,UserMain.class);
-                                userIntent.putExtra("username",name);
-                                startActivity(userIntent);
-                            } else {
-                                ParseUser.logOut();
-                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            if(name.contains("@admin")) {
+                                if (parseUser != null) {
+                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                    Intent userIntent = new Intent(Login.this, UserMain.class);
+                                    userIntent.putExtra("username", name);
+                                    startActivity(userIntent);
+                                } else {
+                                    ParseUser.logOut();
+                                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            }else{
+                                Toast.makeText(Login.this, "Not admin user", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
