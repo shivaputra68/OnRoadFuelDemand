@@ -4,12 +4,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -17,10 +15,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Interfaces.OrderFuelRecyclerClickListner;
 import operations.AdminBunkAdapter;
 import operations.AdminBunkVerify;
@@ -47,7 +43,7 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
         ParseQuery<ParseUser> obj = ParseUser.getQuery();
         obj.whereNotEqualTo("latitude", null);
         obj.whereNotEqualTo("longitude", null);
-        obj.whereNotEqualTo("status", "Pending");
+        obj.whereEqualTo("status", "Pending");
         obj.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
@@ -84,7 +80,6 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
     @Override
     public void onItemClick(int position) {
 
-        if(adminOrderVerifies.get(position).getStatus().equalsIgnoreCase("Accept")) {
 
             ParseObject object = new ParseObject("Fuel");
             object.put("bunk_name", adminOrderVerifies.get(position).getBunkName());
@@ -105,14 +100,13 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
                     }
                 }
             });
-        }else{
-            updateData(position);
-        }
+
     }
 
     private void updateData(int position) {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("name", adminOrderVerifies.get(position).getBunkName() );
+        query.whereEqualTo("status", "Pending");
         query.findInBackground(((objects, e1) -> {
             String objectId = "";
             for(int i=0;i<objects.size();i++){

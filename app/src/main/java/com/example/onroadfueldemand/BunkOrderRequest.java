@@ -48,8 +48,8 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
         ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
         query.whereEqualTo("bunk_name", user.get("name").toString());
         query.whereEqualTo("bunk_contact", user.get("contact").toString());
-        query.whereEqualTo("status", "Accept");
-        query.whereEqualTo("status", "Pending");
+        query.whereNotEqualTo("status", "Delivered");
+
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
