@@ -4,10 +4,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -15,8 +17,10 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import Interfaces.OrderFuelRecyclerClickListner;
 import operations.AdminBunkAdapter;
 import operations.AdminBunkVerify;
@@ -93,31 +97,37 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
             public void done(ParseException e) {
                 if(e == null){
                     Toast.makeText(AdminBunkRequest.this, "Status Updated", Toast.LENGTH_SHORT).show();
-                    ParseQuery<ParseUser> query = ParseUser.getQuery();
-                    query.whereEqualTo("name", adminOrderVerifies.get(position).getBunkName() );
-                    query.findInBackground(((objects, e1) -> {
-                        String objectId = "";
-                        for(int i=0;i<objects.size();i++){
-                            objectId=objects.get(i).getObjectId();
-                        }
-                        ParseQuery<ParseUser> query1 = ParseUser.getQuery();
-                        query1.getInBackground(objectId, new GetCallback<ParseUser>() {
-                            @Override
-                            public void done(ParseUser object, ParseException e) {
-                                object.put("status", adminOrderVerifies.get(position).getStatus());
-                                object.saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(ParseException e) {
-                                        System.out.println("************"+adminOrderVerifies.get(position).getStatus());
-                                    }
-                                });
-                            }
-                        });
-                    }));
+                    updateData(position);
                 }else{
                     Toast.makeText(getApplicationContext(), "Status not updated"+e, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
+    }
+
+    private void updateData(int position) {
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("name", adminOrderVerifies.get(position).getBunkName() );
+        query.findInBackground(((objects, e1) -> {
+            String objectId = "";
+            for(int i=0;i<objects.size();i++){
+                objectId=objects.get(i).getObjectId();
+            }
+            ParseQuery<ParseUser> query1 = ParseUser.getQuery();
+            query1.getInBackground(objectId, new GetCallback<ParseUser>() {
+                @Override
+                public void done(ParseUser object, ParseException e) {
+                    object.put("status", adminOrderVerifies.get(position).getStatus());
+                    object.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            System.out.println("************"+adminOrderVerifies.get(position).getStatus());
+                        }
+                    });
+                }
+            });
+        }));
     }
 }
