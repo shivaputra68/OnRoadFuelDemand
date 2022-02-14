@@ -87,9 +87,12 @@ public class BunkUpdate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Fuel");
+
                 query.whereEqualTo("owner", ParseUser.getCurrentUser().getUsername());
                 query.setLimit(1);
+
                 query.findInBackground(((objects, e) -> {
                     String objectId = "";
                     for(int i=0;i<objects.size();i++){

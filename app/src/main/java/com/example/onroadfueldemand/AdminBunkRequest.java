@@ -106,7 +106,8 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
     private void updateData(int position) {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("name", adminOrderVerifies.get(position).getBunkName() );
-        query.whereEqualTo("status", "Pending");
+
+        query.setLimit(1);
         query.findInBackground(((objects, e1) -> {
             String objectId = "";
             for(int i=0;i<objects.size();i++){
@@ -117,14 +118,18 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
             query1.getInBackground(objectId, new GetCallback<ParseUser>() {
                 @Override
                 public void done(ParseUser object, ParseException e) {
-                    object.put("status", adminOrderVerifies.get(position).getStatus());
-                    object.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            System.out.println("************"+adminOrderVerifies.get(position).getStatus());
+                    if(e == null) {
+                        object.put("status", adminOrderVerifies.get(position).getStatus());
+                        object.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                System.out.println("************" + adminOrderVerifies.get(position).getStatus());
 
-                        }
-                    });
+                            }
+                        });
+                    }else{
+                        Toast.makeText(AdminBunkRequest.this, "Hello", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }));
