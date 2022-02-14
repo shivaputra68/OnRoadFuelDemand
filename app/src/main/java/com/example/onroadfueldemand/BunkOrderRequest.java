@@ -1,9 +1,11 @@
 package com.example.onroadfueldemand;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,22 +49,33 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
         query.whereEqualTo("bunk_name", user.get("name").toString());
         query.whereEqualTo("bunk_contact", user.get("contact").toString());
         query.whereNotEqualTo("status", "Delivered");
-        query.whereNotEqualTo("status", "Canceled");
+        query.whereNotEqualTo("status", "Reject");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if(e == null && !objects.isEmpty()){
                     for(ParseObject object : objects) {
-                        if (!object.get("status").toString().equals("Delivered") || !object.get("status").toString().equals("Reject")) {
                             bunkOrder.add(new BunkOrder(object.getObjectId(), object.get("customer_name").toString(), object.get("customer_contact").toString(),
                                     object.get("fuel_type").toString(), object.get("address").toString(), object.get("status").toString(),
                                     object.get("quantity").toString(), object.get("total_amount").toString()));
-                        }
+
                     }
+                    adapters() ;
                 }else{
 
+                    AlertDialog.Builder alert = new AlertDialog.Builder(BunkOrderRequest.this);
+                    alert.setMessage("No Requests Found");
+                    alert.setTitle("Alert Message");
+                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(BunkOrderRequest.this, BunkMain.class);
+                            startActivity(intent);
+                        }
+                    });
+                    alert.show();
                 }
-                adapters() ;
+
             }
         });
     }

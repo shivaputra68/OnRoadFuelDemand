@@ -49,6 +49,7 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
             public void done(List<ParseUser> objects, ParseException e) {
                 if (!objects.isEmpty() && e == null) {
                     for (ParseUser object : objects) {
+
                             adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
                                     object.get("address").toString(), object.get("status").toString(), object.get("latitude").toString(), object.get("longitude").toString()));
                         }
@@ -108,7 +109,7 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
                                 object.saveInBackground(new SaveCallback() {
                                     @Override
                                     public void done(ParseException e) {
-                                        System.out.println("************"+object.get("name").toString());
+                                        System.out.println("************"+adminOrderVerifies.get(position).getStatus());
                                     }
                                 });
                             }

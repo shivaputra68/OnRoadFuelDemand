@@ -58,6 +58,7 @@ public class AdminBunkAdapter extends RecyclerView.Adapter<AdminBunkAdapter.Admi
             public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {
                 String value = parent.getItemAtPosition(position1).toString();
                 adminBunkVerifies.get(pos).setStatus(value);
+
             }
         });
     }
