@@ -52,10 +52,12 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if(e == null){
-                    for(ParseObject object : objects){
-                       bunkOrder.add(new BunkOrder(object.getObjectId(),object.get("customer_name").toString(), object.get("customer_contact").toString(),
-                                object.get("fuel_type").toString(), object.get("address").toString(), object.get("status").toString(),
-                                object.get("quantity").toString(),object.get("total_amount").toString()));
+                    for(ParseObject object : objects) {
+                        if (!object.get("status").toString().equals("Delivered") || !object.get("status").toString().equals("Reject")) {
+                            bunkOrder.add(new BunkOrder(object.getObjectId(), object.get("customer_name").toString(), object.get("customer_contact").toString(),
+                                    object.get("fuel_type").toString(), object.get("address").toString(), object.get("status").toString(),
+                                    object.get("quantity").toString(), object.get("total_amount").toString()));
+                        }
                     }
                 }
                 adapters() ;

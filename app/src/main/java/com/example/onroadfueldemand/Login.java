@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 public class Login extends AppCompatActivity {
@@ -139,6 +140,7 @@ public class Login extends AppCompatActivity {
                         progress.show();
                         progress.setMessage("Please wait....");
                         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        ParseQuery<ParseUser> user = ParseUser.getQuery();
                         ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
                             progress.dismiss();
                             if(parseUser.getNumber("latitude")!=null) {

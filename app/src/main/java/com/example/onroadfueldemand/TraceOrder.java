@@ -91,7 +91,7 @@ public class TraceOrder extends AppCompatActivity {
                                     object.saveInBackground(new SaveCallback() {
                                         @Override
                                         public void done(ParseException e) {
-                                            Toast.makeText(TraceOrder.this, "Order Has Been Canceld!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(TraceOrder.this, "Order Has Been Cancelled!", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }

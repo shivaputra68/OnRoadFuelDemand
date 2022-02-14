@@ -124,6 +124,7 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
             //user.put("location", cordinates);
             user.put("latitude",latitude);
             user.put("longitude", longitude);
+            user.put("status", "Pending");
             user.setPassword(password);
             user.setEmail(email);
             user.signUpInBackground(new SignUpCallback() {

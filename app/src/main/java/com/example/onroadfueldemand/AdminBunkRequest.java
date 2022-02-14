@@ -43,11 +43,11 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
         obj.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
-                for(ParseUser object : objects){
-                    System.out.println(object.getUsername());
-                    //adminOrderVerifies.add(new AdminBunkVerify("123","123","123","123","123"));
-                    adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
-                            object.get("address").toString(), "Pending",object.get("latitude").toString(),object.get("longitude").toString()));
+                for(ParseUser object : objects) {
+                    if (object.get("status").toString().equals("Pending")) {
+                        adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
+                                object.get("address").toString(), object.get("status").toString(), object.get("latitude").toString(), object.get("longitude").toString()));
+                    }
                 }
                 setAdapter();
             }
@@ -76,6 +76,8 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
             public void done(ParseException e) {
                 if(e == null){
                     Toast.makeText(AdminBunkRequest.this, "Status Updated", Toast.LENGTH_SHORT).show();
+
+
                 }else{
                     Toast.makeText(getApplicationContext(), "Status not updated"+e, Toast.LENGTH_SHORT).show();
                 }

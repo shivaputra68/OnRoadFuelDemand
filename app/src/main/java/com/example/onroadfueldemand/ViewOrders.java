@@ -40,7 +40,6 @@ public class ViewOrders extends AppCompatActivity {
         obj.findInBackground(((objects, e) -> {
 
             for(int i=0;i< objects.size();i++){
-                System.out.println("*******************"+objects.get(i).get("bunk_name").toString()+"****************");
                 orderHistory.add(new ViewOrder(objects.get(i).get("bunk_name").toString(), objects.get(i).get("fuel_type").toString(),
                         objects.get(i).getObjectId().toString(), objects.get(i).get("total_amount").toString(),objects.get(i).get("status").toString(),
                         objects.get(i).get("date").toString(),objects.get(i).get("quantity").toString()));
