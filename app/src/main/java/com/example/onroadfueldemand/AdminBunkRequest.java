@@ -84,27 +84,30 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
     @Override
     public void onItemClick(int position) {
 
-        ParseObject object = new ParseObject("Fuel");
-        object.put("bunk_name", adminOrderVerifies.get(position).getBunkName());
-        object.put("owner", adminOrderVerifies.get(position).getOwnerName());
-        object.put("contact", adminOrderVerifies.get(position).getBunkContact());
-        object.put("address", adminOrderVerifies.get(position).getBunkAddress());
-        object.put("status", adminOrderVerifies.get(position).getStatus());
-        object.put("latitude", adminOrderVerifies.get(position).getLatitude());
-        object.put("longitude", adminOrderVerifies.get(position).getLongitude());
-        object.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e == null){
-                    Toast.makeText(AdminBunkRequest.this, "Status Updated", Toast.LENGTH_SHORT).show();
-                    updateData(position);
-                }else{
-                    Toast.makeText(getApplicationContext(), "Status not updated"+e, Toast.LENGTH_SHORT).show();
+        if(adminOrderVerifies.get(position).getStatus().equalsIgnoreCase("Accept")) {
+
+            ParseObject object = new ParseObject("Fuel");
+            object.put("bunk_name", adminOrderVerifies.get(position).getBunkName());
+            object.put("owner", adminOrderVerifies.get(position).getOwnerName());
+            object.put("contact", adminOrderVerifies.get(position).getBunkContact());
+            object.put("address", adminOrderVerifies.get(position).getBunkAddress());
+            object.put("status", adminOrderVerifies.get(position).getStatus());
+            object.put("latitude", adminOrderVerifies.get(position).getLatitude());
+            object.put("longitude", adminOrderVerifies.get(position).getLongitude());
+            object.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        Toast.makeText(AdminBunkRequest.this, "Status Updated", Toast.LENGTH_SHORT).show();
+                        updateData(position);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Status not updated" + e, Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
-
-
+            });
+        }else{
+            updateData(position);
+        }
     }
 
     private void updateData(int position) {
@@ -116,6 +119,7 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
                 objectId=objects.get(i).getObjectId();
             }
             ParseQuery<ParseUser> query1 = ParseUser.getQuery();
+            System.out.println("************"+objectId);
             query1.getInBackground(objectId, new GetCallback<ParseUser>() {
                 @Override
                 public void done(ParseUser object, ParseException e) {
@@ -124,6 +128,7 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
                         @Override
                         public void done(ParseException e) {
                             System.out.println("************"+adminOrderVerifies.get(position).getStatus());
+
                         }
                     });
                 }

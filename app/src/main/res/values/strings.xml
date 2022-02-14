@@ -121,7 +121,7 @@
     <!-- string array for admin bunk request update -->
     <string-array name="adminRequestUpdate">
         <item>Pending</item>
-        <item>Acccept</item>
+        <item>Accept</item>
         <item>Reject</item>
     </string-array>
 
