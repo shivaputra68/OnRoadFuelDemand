@@ -46,12 +46,10 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
         if(ContextCompat.checkSelfPermission(Register_map.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(Register_map.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 100);
         }
-
 
         //intent from map from register page
         Intent intent = getIntent();
@@ -61,9 +59,6 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
          email=intent.getStringExtra("email");
          username=intent.getStringExtra("username");
          password=intent.getStringExtra("password");
-
-
-
     }
 
     /**
@@ -85,10 +80,6 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(bengaluru));
         mMap.setMinZoomPreference(10);
 
-
-
-
-
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
@@ -100,16 +91,8 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
                 cordinates=latLng.toString();
                  latitude=latLng.latitude;
                  longitude=latLng.longitude;
-
-
-
             }
         });
-
-
-
-
-
     }
 
     public void register (View view)
@@ -149,4 +132,3 @@ public class Register_map extends FragmentActivity implements OnMapReadyCallback
         }
     }
 }
-

@@ -62,6 +62,7 @@ public class TraceOrder extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                alert.show();
             }
         }));
 

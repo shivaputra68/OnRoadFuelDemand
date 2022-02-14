@@ -51,7 +51,7 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                if(e == null){
+                if(e == null && !objects.isEmpty()){
                     for(ParseObject object : objects) {
                         if (!object.get("status").toString().equals("Delivered") || !object.get("status").toString().equals("Reject")) {
                             bunkOrder.add(new BunkOrder(object.getObjectId(), object.get("customer_name").toString(), object.get("customer_contact").toString(),
@@ -59,6 +59,8 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
                                     object.get("quantity").toString(), object.get("total_amount").toString()));
                         }
                     }
+                }else{
+
                 }
                 adapters() ;
             }

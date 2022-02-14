@@ -1,12 +1,15 @@
 package com.example.onroadfueldemand;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -43,11 +46,25 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
         obj.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
-                for(ParseUser object : objects) {
-                    if (object.get("status").toString().equals("Pending")) {
-                        adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
-                                object.get("address").toString(), object.get("status").toString(), object.get("latitude").toString(), object.get("longitude").toString()));
+                if (!objects.isEmpty() && e == null) {
+                    for (ParseUser object : objects) {
+                        if (object.get("status").toString().equals("Pending")) {
+                            adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
+                                    object.get("address").toString(), object.get("status").toString(), object.get("latitude").toString(), object.get("longitude").toString()));
+                        }
                     }
+                }else{
+                    AlertDialog.Builder alert = new AlertDialog.Builder(AdminBunkRequest.this);
+                    alert.setMessage("No Requests Found");
+                    alert.setTitle("Alert Message");
+                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(AdminBunkRequest.this, AdminMain.class);
+                            startActivity(intent);
+                        }
+                    });
+                    alert.show();
                 }
                 setAdapter();
             }
@@ -76,8 +93,27 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
             public void done(ParseException e) {
                 if(e == null){
                     Toast.makeText(AdminBunkRequest.this, "Status Updated", Toast.LENGTH_SHORT).show();
-
-
+                    ParseQuery<ParseUser> query = ParseUser.getQuery();
+                    query.whereEqualTo("name", adminOrderVerifies.get(position).getBunkName() );
+                    query.findInBackground(((objects, e1) -> {
+                        String objectId = "";
+                        for(int i=0;i<objects.size();i++){
+                            objectId=objects.get(i).getObjectId();
+                        }
+                        ParseQuery<ParseUser> query1 = ParseUser.getQuery();
+                        query1.getInBackground(objectId, new GetCallback<ParseUser>() {
+                            @Override
+                            public void done(ParseUser object, ParseException e) {
+                                object.put("status", adminOrderVerifies.get(position).getStatus());
+                                object.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException e) {
+                                        System.out.println("************"+object.get("name").toString());
+                                    }
+                                });
+                            }
+                        });
+                    }));
                 }else{
                     Toast.makeText(getApplicationContext(), "Status not updated"+e, Toast.LENGTH_SHORT).show();
                 }
