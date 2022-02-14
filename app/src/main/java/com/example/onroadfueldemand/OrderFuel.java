@@ -133,16 +133,17 @@ public class OrderFuel extends AppCompatActivity implements OrderFuelRecyclerCli
                     //calculating the distance by fetching from database
                     //System.out.println(getDistance(latitude, Double.parseDouble(objects.get(i).get("latitude").toString()), longitude, Double.parseDouble(objects.get(i).get("longitude").toString()) ));
                     double d=getDistance(latitude, Double.parseDouble(objects.get(i).get("latitude").toString()), longitude, Double.parseDouble(objects.get(i).get("longitude").toString()) );
-
-                       System.out.println(objects.get(i).get("latitude") + " and " + objects.get(i).get("longitude"));
-                       bunkName.add(objects.get(i).get("bunk_name").toString());
-                       bunkDistance.add(Double.toString(d));
-                       bunkContact.add(objects.get(i).get("contact").toString());
-                       petrol_price.add(objects.get(i).get("petrol_price").toString());
-                       diesel_price.add(objects.get(i).get("diesel_price").toString());
-                       fuelType.add(objects.get(i).get("fuel_type").toString());
-                        //System.out.println(objects.get(i).get("fuel_type").toString());
-                        System.out.println(Double.toString(d));
+                        if(d<=10) {
+                            System.out.println(objects.get(i).get("latitude") + " and " + objects.get(i).get("longitude"));
+                            bunkName.add(objects.get(i).get("bunk_name").toString());
+                            bunkDistance.add(Double.toString(d));
+                            bunkContact.add(objects.get(i).get("contact").toString());
+                            petrol_price.add(objects.get(i).get("petrol_price").toString());
+                            diesel_price.add(objects.get(i).get("diesel_price").toString());
+                            fuelType.add(objects.get(i).get("fuel_type").toString());
+                            //System.out.println(objects.get(i).get("fuel_type").toString());
+                            //System.out.println(Double.toString(d));
+                        }
 
                 }
 

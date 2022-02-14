@@ -42,6 +42,7 @@ public class Register<protecetd> extends AppCompatActivity {
         conf_password = findViewById(R.id.reg_conf_password);
         signup = findViewById(R.id.reg_signup);
         layout = findViewById(R.id.reg_page_layout);
+        checkBox=findViewById(R.id.reg_chk);
 
         //Action code
         switch(usertype){
@@ -50,7 +51,7 @@ public class Register<protecetd> extends AppCompatActivity {
                 signup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(password.getText().toString().isEmpty()||!password.getText().toString().equals(conf_password.getText().toString()))
+                        if(password.getText().toString().isEmpty()||password.getText().toString().equals(conf_password.getText().toString())==false)
                         {
                             Toast.makeText(Register.this, "Password Mismatch", Toast.LENGTH_SHORT).show();
 
@@ -60,8 +61,28 @@ public class Register<protecetd> extends AppCompatActivity {
                             Toast.makeText(Register.this, "Please agree to the terms and condition", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Register(name.getText().toString(), address.getText().toString(), contact.getText().toString()
-                                    , email.getText().toString(), username.getText().toString(), password.getText().toString());
+//
+
+                            ParseUser user = new ParseUser();
+                            user.setUsername(username.getText().toString());
+                            user.put("name",name.getText().toString());
+                            user.put("contact",contact.getText().toString());
+                            user.put("address",address.getText().toString());
+                            user.setPassword(password.getText().toString());
+                            user.setEmail(email.getText().toString());
+                            user.signUpInBackground(new SignUpCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    if (e == null) {
+                                        Toast.makeText(getApplicationContext(), "Successful Sign Up!", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        ParseUser.logOut();
+                                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                         }
 
                     }
