@@ -55,6 +55,7 @@ public class UserMain extends AppCompatActivity {
                 ParseUser.logOutInBackground(e -> {
                     progressDialog.dismiss();
                     if (e == null) {
+                        ParseUser.logOut();
                         Toast.makeText(getApplicationContext(), "Logged out Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(UserMain.this, MainActivity.class);
                         intent.putExtra("key", "user");
