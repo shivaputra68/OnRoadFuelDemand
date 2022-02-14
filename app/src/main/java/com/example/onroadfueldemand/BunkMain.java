@@ -56,6 +56,7 @@ public class BunkMain extends AppCompatActivity {
                 ParseUser.logOutInBackground(e -> {
                     progressDialog.dismiss();
                     if (e == null) {
+                        ParseUser.logOut();
                         Toast.makeText(getApplicationContext(), "Logged out Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(BunkMain.this, MainActivity.class);
                         intent.putExtra("key", "bunk");
@@ -92,4 +93,11 @@ public class BunkMain extends AppCompatActivity {
             }
         });
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        ParseUser.logOut();
+//        Intent o=new Intent(this,MainActivity.class);
+//    }
 }

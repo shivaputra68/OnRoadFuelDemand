@@ -97,8 +97,7 @@ public class Login extends AppCompatActivity {
                             //String lat=parseUser.getString("latitude");
                             //String lat1=  parseUser.getNumber("latitude").toString();
                            // System.out.println(lat1);
-                            if(parseUser.getNumber("latitude")==null)
-                            {
+
                                 //System.out.println(lat1);
                                 if (parseUser != null) {
                                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
@@ -109,11 +108,7 @@ public class Login extends AppCompatActivity {
                                     ParseUser.logOut();
                                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
-                            }
-                            else
-                            {
-                                Toast.makeText(Login.this, "Invalid User", Toast.LENGTH_SHORT).show();
-                            }
+
 
                         });
                     }
@@ -143,7 +138,7 @@ public class Login extends AppCompatActivity {
                         ParseQuery<ParseUser> user = ParseUser.getQuery();
                         ParseUser.logInInBackground(name, pass, (parseUser, e) -> {
                             progress.dismiss();
-                            if(parseUser.getNumber("latitude")!=null) {
+
                                 if (parseUser != null) {
                                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                                     Intent bunkIntent = new Intent(Login.this, BunkMain.class);
@@ -152,11 +147,8 @@ public class Login extends AppCompatActivity {
                                     ParseUser.logOut();
                                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
-                            }
-                            else
-                            {
-                                Toast.makeText(Login.this, "Invalid Bunk User", Toast.LENGTH_SHORT).show();
-                            }
+
+
                         });
 
                     }

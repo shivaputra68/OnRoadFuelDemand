@@ -53,10 +53,12 @@ public class AdminBunkAdapter extends RecyclerView.Adapter<AdminBunkAdapter.Admi
         holder.bunkAddress.setText("Address : "+adminBunkVerifies.get(position).getBunkAddress());
         holder.status.setText(adminBunkVerifies.get(position).getStatus());
         holder.status.setAdapter(adapter);
+        System.out.println("1:   "+adminBunkVerifies.get(position).getStatus());
         holder.status.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position1, long id) {
                 String value = parent.getItemAtPosition(position1).toString();
+                System.out.println(value);
                 adminBunkVerifies.get(pos).setStatus(value);
 
             }
