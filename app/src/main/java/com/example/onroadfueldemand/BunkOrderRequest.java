@@ -48,16 +48,17 @@ public class BunkOrderRequest extends AppCompatActivity implements OrderFuelRecy
         ParseQuery<ParseObject> query = ParseQuery.getQuery("order");
         query.whereEqualTo("bunk_name", user.get("name").toString());
         query.whereEqualTo("bunk_contact", user.get("contact").toString());
-        query.whereNotEqualTo("status", "Delivered");
-        query.whereNotEqualTo("status", "Reject");
+        query.whereEqualTo("status", "Accept");
+        query.whereEqualTo("status", "Pending");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if(e == null && !objects.isEmpty()){
                     for(ParseObject object : objects) {
-                            bunkOrder.add(new BunkOrder(object.getObjectId(), object.get("customer_name").toString(), object.get("customer_contact").toString(),
-                                    object.get("fuel_type").toString(), object.get("address").toString(), object.get("status").toString(),
-                                    object.get("quantity").toString(), object.get("total_amount").toString()));
+
+                        bunkOrder.add(new BunkOrder(object.getObjectId(), object.get("customer_name").toString(), object.get("customer_contact").toString(),
+                                object.get("fuel_type").toString(), object.get("address").toString(), object.get("status").toString(),
+                                object.get("quantity").toString(), object.get("total_amount").toString()));
 
                     }
                     adapters() ;

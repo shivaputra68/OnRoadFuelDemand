@@ -53,7 +53,7 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
                             adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
                                     object.get("address").toString(), object.get("status").toString(), object.get("latitude").toString(), object.get("longitude").toString()));
                         }
-
+                    setAdapter();
                 }else{
                     AlertDialog.Builder alert = new AlertDialog.Builder(AdminBunkRequest.this);
                     alert.setMessage("No Requests Found");
@@ -67,7 +67,6 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
                     });
                     alert.show();
                 }
-                setAdapter();
             }
         });
     }
