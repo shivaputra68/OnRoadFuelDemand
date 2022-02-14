@@ -43,16 +43,16 @@ public class AdminBunkRequest extends AppCompatActivity implements OrderFuelRecy
         ParseQuery<ParseUser> obj = ParseUser.getQuery();
         obj.whereNotEqualTo("latitude", null);
         obj.whereNotEqualTo("longitude", null);
+        obj.whereNotEqualTo("status", "Pending");
         obj.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
                 if (!objects.isEmpty() && e == null) {
                     for (ParseUser object : objects) {
-                        if (object.get("status").toString().equals("Pending")) {
                             adminOrderVerifies.add(new AdminBunkVerify(object.get("name").toString(), object.getUsername(), object.get("contact").toString(),
                                     object.get("address").toString(), object.get("status").toString(), object.get("latitude").toString(), object.get("longitude").toString()));
                         }
-                    }
+
                 }else{
                     AlertDialog.Builder alert = new AlertDialog.Builder(AdminBunkRequest.this);
                     alert.setMessage("No Requests Found");
